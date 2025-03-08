@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: cyan;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    text-shadow: 0 0 15px cyan;
+}
+
+h2 {
+    font-size: 2em;
+    color: yellow;
+    text-shadow: 0 0 10px yellow;
+}
+
+.quote {
+    font-size: 1.5em;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+button {
+    background: rgba(0, 255, 255, 0.2);
+    border: 2px solid cyan;
+    color: cyan;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 15px cyan;
+}
+
+button:hover {
+    background: cyan;
+    color: black;
+    box-shadow: 0 0 25px cyan;
+}
+
+.portal-container {
+    margin-top: 40px;
+}
+
+.portal {
+    width: 300px;
+    height: 300px;
+    animation: rotatePortal 4s linear infinite;
+}
+
+@keyframes rotatePortal {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
