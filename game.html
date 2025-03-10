@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Chase</title>
+    <style>
+        body {
+            margin: 0;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #neon-cat {
+            position: absolute;
+            width: 150px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #score {
+            font-size: 20px;
+            margin: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p id="score">점수: 0</p>
+    <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()">
+    
+    <audio autoplay loop>
+        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_singularity_bgm.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        let score = 0;
+        const cat = document.getElementById("neon-cat");
+        const scoreDisplay = document.getElementById("score");
+
+        function moveCat() {
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 150;
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            cat.style.left = newX + "px";
+            cat.style.top = newY + "px";
+
+            // 랜덤한 크기와 회전 추가 (기묘한 패턴)
+            const rotate = Math.random() * 360;
+            const scale = 0.7 + Math.random() * 0.6;
+            cat.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+        }
+
+        function clickCat() {
+            score++;
+            scoreDisplay.innerHTML = "점수: " + score;
+            moveCat();
+        }
+
+        moveCat();
+        setInterval(moveCat, 2000);
+    </script>
+</body>
+</html>
