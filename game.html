@@ -30,6 +30,21 @@
             left: 10px;
         }
 
+        #gacha-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #ff00ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-shadow: 0 0 10px white;
+        }
+
         audio {
             display: none;
         }
@@ -42,6 +57,9 @@
     <audio autoplay loop>
         <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_singularity_bgm.mp3" type="audio/mp3">
     </audio>
+
+    <!-- 카드 뽑기 버튼 추가 -->
+    <button id="gacha-btn" onclick="goToGacha()">🎴 카드 뽑기 🎴</button>
 
     <script>
         let score = 0;
@@ -66,6 +84,10 @@
             score++;
             scoreDisplay.innerHTML = "점수: " + score;
             moveCat();
+        }
+
+        function goToGacha() {
+            window.location.href = "gacha.html"; // 카드 뽑기 페이지로 이동
         }
 
         moveCat();
