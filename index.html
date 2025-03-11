@@ -1,102 +1,75 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Singularity</title>
+    <title>NEON PORTAL</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: url("https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile.GIF") no-repeat center center/cover;
-            background-color: black;
-            color: cyan;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .content {
+            height: 100vh;
+            background: url('glitch-background.gif') no-repeat center center/cover;
+            color: #0ff;
+            font-family: 'Arial', sans-serif;
             text-align: center;
         }
-
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0ff;
+        }
         .title {
-            font-size: 3em;
-            font-weight: bold;
-            text-shadow: 0 0 10px cyan;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #0ff;
         }
-
-        .countdown {
-            font-size: 2em;
-            margin-top: 20px;
-            text-shadow: 0 0 8px yellow;
+        .sub-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
-
-        .button-container {
-            margin-top: 30px;
-        }
-
-        .neon-button {
-            font-size: 1.5em;
+        #portal-btn {
+            background: #ff00ff;
+            color: white;
+            border: none;
             padding: 10px 20px;
-            border: 2px solid cyan;
-            background: transparent;
-            color: cyan;
+            font-size: 1.2em;
+            border-radius: 5px;
             cursor: pointer;
-            transition: 0.3s;
-            text-shadow: 0 0 5px cyan;
+            box-shadow: 0 0 10px #ff00ff;
         }
-
-        .neon-button:hover {
-            background: cyan;
-            color: black;
-            text-shadow: 0 0 10px black;
+        #portal-btn:hover {
+            background: #ff33ff;
+        }
+        #error-message {
+            display: none;
+            color: red;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px red;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="title">NEON SINGULARITY</div>
-        <div class="countdown" id="countdown"></div>
-        <div class="button-container">
-            <button class="neon-button" onclick="location.href='game.html'">ENTER THE PORTAL</button>
-        </div>
+    <div class="container">
+        <h1 class="title">NEON PORTAL</h1>
+        <p class="sub-text">차원 오류 감지됨... 포탈을 통해 진입하십시오.</p>
+        <button id="portal-btn">🚀 포탈 열기 🚀</button>
+        <div id="error-message">⚠ 포탈 진입 오류 ⚠<br>차원 연결 불안정... 재시도 중...</div>
     </div>
-    <audio autoplay loop>
-        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neon_singularity_bgm.mp3" type="audio/mp3">
-        Your browser does not support the audio tag.
-    </audio>
-
     <script>
-        function startCountdown() {
-            const targetDate = new Date("2025-12-31T23:59:59").getTime();
-
-            setInterval(() => {
-                const now = new Date().getTime();
-                const timeLeft = targetDate - now;
-
-                if (timeLeft > 0) {
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                    document.getElementById("countdown").innerHTML = 
-                        `D-Day Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-                } else {
-                    document.getElementById("countdown").innerHTML = "🚀 IT'S TIME! 🚀";
-                }
-            }, 1000);
-        }
-
-        startCountdown();
+        document.getElementById('portal-btn').addEventListener('click', function() {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
+        });
     </script>
 </body>
 </html>
