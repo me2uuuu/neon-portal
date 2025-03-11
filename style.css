@@ -7,7 +7,7 @@ body {
     color: cyan;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
-    background: url('https://github.com/me2uuuu/neon-portal/blob/main/gifFile%205.GIF') no-repeat center center fixed;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%205.GIF') no-repeat center center fixed;
     background-size: cover; /* 배경을 가로로 확장 */
 }
 
@@ -65,19 +65,19 @@ button:hover {
     to { transform: rotate(360deg); }
 }
 
-/* 카드 스타일 추가 */
+/* 카드 스타일 수정 - 크기 줄이기 */
 .card-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 30px;
-    gap: 15px;
+    gap: 10px;
 }
 
 .card {
-    width: 120px;
-    height: 160px;
+    width: 90px; /* 기존보다 더 작게 */
+    height: 120px; /* 비율 유지 */
     margin: 5px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
