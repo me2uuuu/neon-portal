@@ -76,8 +76,8 @@ button:hover {
 }
 
 .card {
-    width: 90px; /* 기존보다 더 작게 */
-    height: 120px; /* 비율 유지 */
+    width: 10px; /* 기존보다 더 작게 */
+    height: 30px; /* 비율 유지 */
     margin: 5px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
