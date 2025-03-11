@@ -11,6 +11,9 @@
             background-size: cover;
             overflow: hidden;
             position: relative;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: cyan;
         }
 
         #neon-cat {
@@ -23,15 +26,15 @@
         #score {
             font-size: 20px;
             margin: 10px;
-            color: white;
             text-shadow: 2px 2px 4px #000;
             position: absolute;
             top: 10px;
             left: 10px;
         }
 
+        /* 카드 뽑기 버튼 */
         #gacha-btn {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -43,6 +46,13 @@
             border-radius: 10px;
             cursor: pointer;
             text-shadow: 0 0 10px white;
+            box-shadow: 0 0 10px #ff00ff;
+            z-index: 1000;
+            display: block; /* 버튼이 확실히 보이도록 */
+        }
+
+        #gacha-btn:hover {
+            background: #ff33ff;
         }
 
         audio {
