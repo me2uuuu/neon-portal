@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,7 +33,7 @@
             font-size: 1.2em;
             margin-bottom: 20px;
         }
-        #portal-btn {
+        #portal-btn, #gacha-btn {
             background: #ff00ff;
             color: white;
             border: none;
@@ -41,8 +42,9 @@
             border-radius: 5px;
             cursor: pointer;
             box-shadow: 0 0 10px #ff00ff;
+            margin-top: 15px;
         }
-        #portal-btn:hover {
+        #portal-btn:hover, #gacha-btn:hover {
             background: #ff33ff;
         }
         #error-message {
@@ -51,6 +53,14 @@
             font-size: 1.5em;
             text-shadow: 0 0 10px red;
             margin-top: 20px;
+        }
+        /* 카드 뽑기 버튼 위치 */
+        #gacha-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block; /* 확실히 보이게 설정 */
         }
     </style>
 </head>
@@ -62,6 +72,9 @@
         <div id="error-message">⚠ 포탈 진입 오류 ⚠<br>차원 연결 불안정... 재시도 중...</div>
     </div>
     
+    <!-- 카드 뽑기 버튼 추가 -->
+    <button id="gacha-btn" onclick="goToGacha()">🎴 카드 뽑기 🎴</button>
+
     <script>
         document.getElementById('portal-btn').addEventListener('click', function() {
             const errorMessage = document.getElementById('error-message');
@@ -73,6 +86,10 @@
                 window.location.href = "game.html"; // 2페이지(게임)으로 이동
             }, 2000);
         });
+
+        function goToGacha() {
+            window.location.href = "gacha.html"; // 가챠 페이지로 이동
+        }
     </script>
 </body>
 </html>
