@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네온 포탈 카드 뽑기</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="glitch">네온 포탈 가챠</h1>
+        <p class="subtitle">카드를 선택하여 운명을 결정하세요.</p>
+        <div class="card-container">
+            <div class="card" onclick="revealCard(this)">
+                <img src="card-back.png" class="card-img">
+            </div>
+            <div class="card" onclick="revealCard(this)">
+                <img src="card-back.png" class="card-img">
+            </div>
+            <div class="card" onclick="revealCard(this)">
+                <img src="card-back.png" class="card-img">
+            </div>
+        </div>
+        <button onclick="goBack()">🔙 돌아가기</button>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.location.href = "index.html"; // 첫 페이지로 돌아가기
+        }
+        
+        function revealCard(cardElement) {
+            const cardImages = [
+                "fire-cat.png",
+                "ice-cat.png",
+                "thunder-cat.png",
+                "wind-cat.png",
+                "cyber-cat.png",
+                "dark-neon-cat.png"
+            ];
+            
+            const randomIndex = Math.floor(Math.random() * cardImages.length);
+            const selectedCard = cardImages[randomIndex];
+            
+            cardElement.innerHTML = `<img src="${selectedCard}" class="card-img">`;
+        }
+    </script>
+</body>
+</html>
