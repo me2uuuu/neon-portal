@@ -3,47 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네온 포탈 카드 뽑기</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Neon Portal - Gacha</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%205.GIF') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: cyan;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 15px cyan;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            width: 120px; /* 카드 크기 조정 */
+            height: 160px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: 2px solid cyan;
+            border-radius: 10px;
+        }
+
+        /* 애니메이션 효과 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 카드 뽑기 버튼 */
+        #draw-card-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            background: #ff00ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-shadow: 0 0 10px white;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        #draw-card-btn:hover {
+            background: #ff33ff;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="glitch">네온 포탈 가챠</h1>
-        <p class="subtitle">카드를 선택하여 운명을 결정하세요.</p>
+        <h1>🎴 네온 포탈 카드 뽑기 🎴</h1>
         <div class="card-container">
-            <div class="card" onclick="revealCard(this)">
-                <img src="card-back.png" class="card-img">
-            </div>
-            <div class="card" onclick="revealCard(this)">
-                <img src="card-back.png" class="card-img">
-            </div>
-            <div class="card" onclick="revealCard(this)">
-                <img src="card-back.png" class="card-img">
-            </div>
+            <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
+            <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
+            <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
         </div>
-        <button onclick="goBack()">🔙 돌아가기</button>
+        <button id="draw-card-btn">✨ 카드 뽑기 ✨</button>
     </div>
-    
+
     <script>
-        function goBack() {
-            window.location.href = "index.html"; // 첫 페이지로 돌아가기
-        }
-        
-        function revealCard(cardElement) {
+        document.getElementById('draw-card-btn').addEventListener('click', function() {
+            const cards = document.querySelectorAll('.card img');
             const cardImages = [
-                "fire-cat.png",
-                "ice-cat.png",
-                "thunder-cat.png",
-                "wind-cat.png",
-                "cyber-cat.png",
-                "dark-neon-cat.png"
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/fire-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/wind-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/ice-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/dark-neon-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/thunder-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/cyber-cat.png"
             ];
-            
-            const randomIndex = Math.floor(Math.random() * cardImages.length);
-            const selectedCard = cardImages[randomIndex];
-            
-            cardElement.innerHTML = `<img src="${selectedCard}" class="card-img">`;
-        }
+
+            // 카드 랜덤 뽑기
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * cardImages.length);
+                    card.src = cardImages[randomIndex];
+                }, index * 500);
+            });
+        });
     </script>
 </body>
 </html>
