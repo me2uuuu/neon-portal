@@ -7,8 +7,8 @@ body {
     color: cyan;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
-    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%205.GIF') no-repeat center center fixed;
-    background-size: cover; /* 배경을 가로로 확장 */
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile.gif') no-repeat center fixed;
+    background-size: cover;
 }
 
 .container {
@@ -65,7 +65,7 @@ button:hover {
     to { transform: rotate(360deg); }
 }
 
-/* 카드 스타일 수정 - 크기 줄이기 */
+/* 카드 스타일 수정 - 크기 조정 */
 .card-container {
     display: flex;
     justify-content: center;
@@ -76,26 +76,31 @@ button:hover {
 }
 
 .card {
-    width: 10px; /* 기존보다 더 작게 */
-    height: 30px; /* 비율 유지 */
-    margin: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    transform: translateY(-20px);
-    opacity: 0;
-    animation: float 3s infinite ease-in-out alternate;
+    width: 80px; /* 기존보다 더 작게 */
+ 높이: 120 px; /* 비율 유지 */
+ 여백: 5 px;
+ 커서: 포인터;
+ 전환: 변환 0.3초, 불투명도 0.3초;
+ 변환: 번역 Y(-20px);
+ 불투명도: 0;
+ 애니메이션: 플로트 3s 무한 확장 대체 기능;
 }
 
 .card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border: 2px solid cyan;
-    border-radius: 10px;
+ 너비: 100%;
+ 높이: 100%;
+ 객체 맞춤: 커버;
+ 경계: 2 px 고체 청록색;
+ 국경 radius: 10 px;
 }
 
 /* 카드 뽑을 때 애니메이션 */
 .show-cards .card {
-    transform: translateY(0);
-    opacity: 1;
+ 변환: Y(0) 번역;
+ 불투명도: 1;
+}
+
+@keyframes 플로팅 {
+ {transform: translate Y(-10px); }
+ {변환: Y(10px) 변환; }
 }
