@@ -22,26 +22,27 @@ h1 {
     text-shadow: 0 0 15px cyan;
 }
 
-/* 카드 컨테이너 */
+/* 카드 컨테이너 위치 조정 (아래로 내림) */
 .card-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 150px; /* 기존보다 더 아래로 조정 */
+    position: relative;
 }
 
 /* 카드 스타일 */
 .card {
-    width: 120px; /* 카드 크기 */
+    width: 120px;
     height: 180px;
     border: 2px solid cyan;
     border-radius: 10px;
     background: rgba(0, 255, 204, 0.2);
     box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     transition: transform 0.3s, opacity 0.3s;
-    opacity: 1; /* 카드 보이도록 변경 */
+    opacity: 1;
 }
 
 /* 카드 이미지 */
@@ -50,6 +51,13 @@ h1 {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+}
+
+/* 카드 애니메이션 */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
 
 /* 카드 뽑기 버튼 */
@@ -70,14 +78,7 @@ h1 {
     background: #ff33ff;
 }
 
-/* 카드 애니메이션 */
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-/* 🎴이모지 제거 (버튼이 있었으면 삭제됨) */
-button:contains("🎴") {
-    display: none;
+/* 🎴 이모지 제거 */
+button:contains("🎴"), .emoji-icon {
+    display: none !important;
 }
