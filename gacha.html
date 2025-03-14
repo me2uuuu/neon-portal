@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Floating Text</title>
+    <title>NEON PORTAL GACHA</title>
     <style>
         body {
             background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
-            background-size: cover; background-position: center center;
+            background-size: cover;
             background-color: black;
             overflow: hidden;
             position: relative;
@@ -20,45 +20,16 @@
             font-weight: bold;
             text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
             animation: flicker 1.6s infinite alternate, glitch 0.1s infinite alternate;
-            white-space: nowrap; /* 가로 이동 시 줄바꿈 방지 */
+            white-space: nowrap;
         }
 
-        .slide-text {
-            animation: slide 5s linear infinite; /* 옆으로 이동하는 애니메이션 */
-        }
-
-        @keyframes flicker {
-            0% { opacity: 0.1; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
-            50% { opacity: 1; text-shadow: 0 0 15px rgba(0, 255, 204, 1); }
-            100% { opacity: 0.3; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0) skewX(0deg); }
-            20% { transform: translate(-3px, 3px) skewX(-10deg); }
-            40% { transform: translate(3px, -3px) skewX(10deg); }
-            60% { transform: translate(-3px, 3px) skewX(-10deg); }
-            80% { transform: translate(3px, -3px) skewX(10deg); }
-            100% { transform: translate(0) skewX(0deg); }
-        }
-            25% { transform: translate(-2px, 2px); }
-            50% { transform: translate(2px, -2px); }
-            75% { transform: translate(-1px, 1px); }
-            100% { transform: translate(0); }
-        }
-
-        @keyframes slide {
-            from { transform: translateX(100vw); }
-            to { transform: translateX(-100vw); }
-        }
-    </style>
         .card-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
-            height: 300px;
+            width: 220px;
+            height: 320px;
             background: rgba(0, 255, 204, 0.2);
             border: 2px solid #00ffcc;
             border-radius: 15px;
@@ -67,47 +38,59 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
+            font-size: 1.5em;
             color: #00ffcc;
             text-align: center;
+            cursor: pointer;
         }
 
         @keyframes float {
             0% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-10px); }
+            50% { transform: translate(-50%, -50%) translateY(-15px); }
             100% { transform: translate(-50%, -50%) translateY(0); }
         }
+
+        @keyframes flicker {
+            0% { opacity: 0.1; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
+            50% { opacity: 1; text-shadow: 0 0 15px rgba(0, 255, 204, 1); }
+            100% { opacity: 0.3; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
+        }
+
     </style>
 </head>
 <body>
-    <div class="card-container">NEON CARD</div>
+    <div class="card-container" id="gacha-card">✨ TAP TO DRAW ✨</div>
+
     <script>
-        const phrases = [
-            "ACCESS GRANTED", "NEON SYSTEM ACTIVE", "ERROR_404",
-            "LOADING...", "SYSTEM REBOOT", "HACKING IN PROGRESS",
-            "GLITCH DETECTED", "DATA BREACH", "CYPHER ENGAGED"
+        const cardImages = [
+            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/fire-cat.png",
+            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/wind-cat.png",
+            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/ice-cat.png",
+            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/dark-neon-cat.png",
+            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/thunder-cat.png",
+            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/cyber-cat.png"
         ];
-        const colors = ["#00ffcc", "#00ccff", "#0099ff", "#0066ff", "#0033ff"];
-        
+
+        document.getElementById("gacha-card").addEventListener("click", function() {
+            const randomIndex = Math.floor(Math.random() * cardImages.length);
+            this.innerHTML = `<img src="${cardImages[randomIndex]}" width="100%" height="100%">`;
+        });
+
         function createFloatingText() {
+            const phrases = ["ACCESS GRANTED", "NEON SYSTEM ACTIVE", "ERROR_404", "LOADING...", "SYSTEM REBOOT"];
+            const colors = ["#00ffcc", "#00ccff", "#0099ff", "#0066ff", "#0033ff"];
             const text = document.createElement("div");
             text.classList.add("floating-text");
             text.innerText = phrases[Math.floor(Math.random() * phrases.length)];
             text.style.color = colors[Math.floor(Math.random() * colors.length)];
             text.style.left = Math.random() * window.innerWidth + "px";
             text.style.top = Math.random() * window.innerHeight + "px";
-            text.style.fontSize = `${Math.random() * 1.5 + 1.2}em`;
-            
-            // 50% 확률로 가로로 이동하는 애니메이션 적용
-            if (Math.random() > 0.5) {
-                text.classList.add("slide-text");
-            }
-            
             document.body.appendChild(text);
             setTimeout(() => { text.remove(); }, 5000);
         }
 
-        setInterval(createFloatingText, 600);
+        setInterval(createFloatingText, 1000);
     </script>
 </body>
 </html>
+       
