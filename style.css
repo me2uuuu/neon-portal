@@ -7,100 +7,77 @@ body {
     color: cyan;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
-    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile.gif') no-repeat center fixed;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center fixed;
     background-size: cover;
 }
 
+/* 컨테이너 스타일 */
 .container {
     margin-top: 50px;
 }
 
+/* 제목 스타일 */
 h1 {
     font-size: 3em;
     text-shadow: 0 0 15px cyan;
 }
 
-h2 {
-    font-size: 2em;
-    color: yellow;
-    text-shadow: 0 0 10px yellow;
-}
-
-.quote {
-    font-size: 1.5em;
-    color: #ff00ff;
-    text-shadow: 0 0 10px #ff00ff;
-}
-
-button {
-    background: rgba(0, 255, 255, 0.2);
-    border: 2px solid cyan;
-    color: cyan;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 15px cyan;
-}
-
-button:hover {
-    background: cyan;
-    color: black;
-    box-shadow: 0 0 25px cyan;
-}
-
-.portal-container {
-    margin-top: 40px;
-}
-
-.portal {
-    width: 300px;
-    height: 300px;
-    animation: rotatePortal 4s linear infinite;
-}
-
-@keyframes rotatePortal {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* 카드 스타일 수정 - 크기 조정 */
+/* 카드 컨테이너 */
 .card-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    gap: 15px;
     margin-top: 30px;
-    gap: 10px;
 }
 
+/* 카드 스타일 */
 .card {
-    width: 80px; /* 기존보다 더 작게 */
- 높이: 120 px; /* 비율 유지 */
- 여백: 5 px;
- 커서: 포인터;
- 전환: 변환 0.3초, 불투명도 0.3초;
- 변환: 번역 Y(-20px);
- 불투명도: 0;
- 애니메이션: 플로트 3s 무한 확장 대체 기능;
+    width: 120px; /* 카드 크기 */
+    height: 180px;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 1; /* 카드 보이도록 변경 */
 }
 
-.card-img {
- 너비: 100%;
- 높이: 100%;
- 객체 맞춤: 커버;
- 경계: 2 px 고체 청록색;
- 국경 radius: 10 px;
+/* 카드 이미지 */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-/* 카드 뽑을 때 애니메이션 */
-.show-cards .card {
- 변환: Y(0) 번역;
- 불투명도: 1;
+/* 카드 뽑기 버튼 */
+#draw-card-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 1.2em;
+    background: #ff00ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 10px #ff00ff;
 }
 
-@keyframes 플로팅 {
- {transform: translate Y(-10px); }
- {변환: Y(10px) 변환; }
+#draw-card-btn:hover {
+    background: #ff33ff;
+}
+
+/* 카드 애니메이션 */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* 🎴이모지 제거 (버튼이 있었으면 삭제됨) */
+button:contains("🎴") {
+    display: none;
 }
