@@ -15,62 +15,90 @@
         }
 
         .card-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 240px;
-            height: 340px;
-            background: rgba(0, 255, 204, 0.2);
-            border: 2px solid #00ffcc;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
-            animation: float 3s ease-in-out infinite;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.2em;
-            color: #00ffcc;
-            text-align: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 100px; /* 카드 위치 아래로 조정 */
+        }
+
+        .card {
+            width: 120px;
+            height: 180px;
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
             cursor: pointer;
         }
 
-        .card-container img {
+        .card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-10px); }
-            100% { transform: translate(-50%, -50%) translateY(0); }
+        #draw-card-btn {
+            margin-top: 30px;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            background: #ff00ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-shadow: 0 0 10px white;
+            box-shadow: 0 0 10px #ff00ff;
         }
+
+        #draw-card-btn:hover {
+            background: #ff33ff;
+        }
+
+        /* 배경음악 숨기기 */
+        audio {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
+    <h1>🎴 네온 포탈 카드 뽑기 🎴</h1>
+    
+    <!-- 카드 컨테이너 -->
+    <div class="card-container">
+        <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
+        <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
+        <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
+    </div>
+
+    <button id="draw-card-btn">✨ 카드 뽑기 ✨</button>
 
     <!-- 배경음악 추가 -->
     <audio autoplay loop>
-        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/final_mystic_neon_bgm_v2%202.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/final_mystic_neon_bgm_v2.mp3" type="audio/mp3">
     </audio>
 
-    <div class="card-container" id="gacha-card">✨ TAP TO DRAW ✨</div>
-
     <script>
-        const cardImages = [
-            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/fire-cat.png",
-            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/wind-cat.png",
-            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/ice-cat.png",
-            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/dark-neon-cat.png",
-            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/thunder-cat.png",
-            "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/cyber-cat.png"
-        ];
+        document.getElementById('draw-card-btn').addEventListener('click', function() {
+            const cards = document.querySelectorAll('.card img');
+            const cardImages = [
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/fire-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/wind-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/ice-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/dark-neon-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/thunder-cat.png",
+                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/cyber-cat.png"
+            ];
 
-        document.getElementById("gacha-card").addEventListener("click", function() {
-            const randomIndex = Math.floor(Math.random() * cardImages.length);
-            this.innerHTML = `<img src="${cardImages[randomIndex]}" alt="Gacha Card">`;
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * cardImages.length);
+                    card.src = cardImages[randomIndex];
+                }, index * 500);
+            });
         });
     </script>
 </body>
