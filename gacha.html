@@ -14,22 +14,13 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        .floating-text {
-            position: absolute;
-            font-size: calc(1em + 1vw);
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
-            animation: flicker 1.6s infinite alternate, glitch 0.1s infinite alternate;
-            white-space: nowrap;
-        }
-
         .card-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 220px;
-            height: 320px;
+            width: 240px;
+            height: 340px;
             background: rgba(0, 255, 204, 0.2);
             border: 2px solid #00ffcc;
             border-radius: 15px;
@@ -38,24 +29,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
+            font-size: 1.2em;
             color: #00ffcc;
             text-align: center;
             cursor: pointer;
         }
 
+        .card-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
         @keyframes float {
             0% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-15px); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
             100% { transform: translate(-50%, -50%) translateY(0); }
         }
-
-        @keyframes flicker {
-            0% { opacity: 0.1; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
-            50% { opacity: 1; text-shadow: 0 0 15px rgba(0, 255, 204, 1); }
-            100% { opacity: 0.3; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
-        }
-
     </style>
 </head>
 <body>
@@ -73,24 +64,10 @@
 
         document.getElementById("gacha-card").addEventListener("click", function() {
             const randomIndex = Math.floor(Math.random() * cardImages.length);
-            this.innerHTML = `<img src="${cardImages[randomIndex]}" width="100%" height="100%">`;
+            this.innerHTML = `<img src="${cardImages[randomIndex]}" alt="Gacha Card">`;
         });
-
-        function createFloatingText() {
-            const phrases = ["ACCESS GRANTED", "NEON SYSTEM ACTIVE", "ERROR_404", "LOADING...", "SYSTEM REBOOT"];
-            const colors = ["#00ffcc", "#00ccff", "#0099ff", "#0066ff", "#0033ff"];
-            const text = document.createElement("div");
-            text.classList.add("floating-text");
-            text.innerText = phrases[Math.floor(Math.random() * phrases.length)];
-            text.style.color = colors[Math.floor(Math.random() * colors.length)];
-            text.style.left = Math.random() * window.innerWidth + "px";
-            text.style.top = Math.random() * window.innerHeight + "px";
-            document.body.appendChild(text);
-            setTimeout(() => { text.remove(); }, 5000);
-        }
-
-        setInterval(createFloatingText, 1000);
     </script>
 </body>
 </html>
+
        
