@@ -1,105 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL GACHA</title>
-    <style>
-        body {
-            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
-            background-size: cover;
-            background-color: black;
-            overflow: hidden;
-            position: relative;
-            font-family: 'Orbitron', sans-serif;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-        .card-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 100px; /* 카드 위치 아래로 조정 */
-        }
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: cyan;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center fixed;
+    background-size: cover;
+    overflow: hidden;
+}
 
-        .card {
-            width: 120px;
-            height: 180px;
-            border: 2px solid #00ffcc;
-            border-radius: 10px;
-            background: rgba(0, 255, 204, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            cursor: pointer;
-        }
+/* 컨테이너 스타일 */
+.container {
+    margin-top: 50px;
+}
 
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
+/* 제목 스타일 */
+h1 {
+    font-size: 3em;
+    text-shadow: 0 0 15px cyan;
+}
 
-        #draw-card-btn {
-            margin-top: 30px;
-            padding: 12px 24px;
-            font-size: 1.2em;
-            background: #ff00ff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-shadow: 0 0 10px white;
-            box-shadow: 0 0 10px #ff00ff;
-        }
+/* 카드 컨테이너 */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 10;
+}
 
-        #draw-card-btn:hover {
-            background: #ff33ff;
-        }
+/* 카드 스타일 */
+.card {
+    width: 120px;
+    height: 180px;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 1;
+}
 
-        /* 배경음악 숨기기 */
-        audio {
-            display: none;
-        }
+/* 카드 이미지 */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
-    </style>
-</head>
-<body>
-    <h1>🎴 네온 포탈 카드 뽑기 🎴</h1>
-    
-    <!-- 카드 컨테이너 -->
-    <div class="card-container">
-        <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
-        <div class="card"><img src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/card-back.png" alt="Card"></div>
-    </div>
+/* 카드 뽑기 버튼 (사이드아이 방지) */
+#draw-card-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 1.2em;
+    background: #ff00ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 10px #ff00ff;
+    z-index: 1000;
+}
 
-    <button id="draw-card-btn">✨ 카드 뽑기 ✨</button>
+#draw-card-btn:hover {
+    background: #ff33ff;
+}
 
-    <!-- 배경음악 추가 -->
-    <audio autoplay loop>
-        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/final_mystic_neon_bgm_v2.mp3" type="audio/mp3">
-    </audio>
+/* 카드 애니메이션 */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
 
-    <script>
-        document.getElementById('draw-card-btn').addEventListener('click', function() {
-            const cards = document.querySelectorAll('.card img');
-            const cardImages = [
-                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/fire-cat.png",
-                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/wind-cat.png",
-                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/ice-cat.png",
-                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/dark-neon-cat.png",
-                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/thunder-cat.png",
-                "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/cyber-cat.png"
-            ];
+/* 🎴이모지 버튼 삭제 */
+button:contains("🎴") {
+    display: none;
+}
 
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    const randomIndex = Math.floor(Math.random() * cardImages.length);
-                    card.src = cardImages[randomIndex];
-                }, index * 500);
-            });
-        });
-    </script>
-</body>
-</html>
+/* 배경음악 자동 재생 */
+audio {
+    display: none;
+}
+        
