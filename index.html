@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네온 포탈 P2E 가챠</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>NEON PORTAL GACHA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 배경 음악 -->
+    <audio id="bgm" loop>
+        <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- 사운드 ON 버튼 -->
+    <button id="sound-btn">🔊 사운드 ON</button>
+
     <div class="container">
-        <h1>🔮 네온 포탈 P2E 가챠 시스템</h1>
-        <p id="nekoCoins">💰 NEKO 코인: 100</p>
-        <button onclick="drawCard()">🎴 가챠 돌리기 (10 NEKO)</button>
-        <div id="cardDisplay"></div>
+        <h1>네온 포탈 가챠</h1>
+        
+        <!-- 카드 3개 -->
+        <div class="card-container">
+            <div class="card" id="card1">✨ Gacha Card ✨</div>
+            <div class="card" id="card2">✨ Gacha Card ✨</div>
+            <div class="card" id="card3">✨ Gacha Card ✨</div>
+        </div>
+
+        <!-- 점수 표시 -->
+        <p id="score">점수: 0</p>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
