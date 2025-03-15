@@ -1,42 +1,67 @@
+/* 기본 스타일 */
 body {
-    background-color: #0d0d0d;
-    color: #fff;
+    margin: 0;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
+    color: cyan;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 2px solid #ff00ff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #ff00ff;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-button {
-    background: linear-gradient(90deg, #ff00ff, #00ffff);
-    border: none;
-    padding: 15px 20px;
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #ff00ff;
-    transition: 0.3s;
-}
-
-button:hover {
-    box-shadow: 0 0 20px #00ffff;
+/* 카드 스타일 */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .card {
-    padding: 10px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid cyan;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 15px cyan;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+/* 사운드 버튼 */
+#sound-btn {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #ff00ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 10px #ff00ff;
+    z-index: 1000;
+    display: block;
+}
+
+#sound-btn:hover {
+    background: #ff33ff;
+}
+
+/* 점수 표시 */
+#score {
+    font-size: 20px;
     margin: 10px;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    display: inline-block;
-    box-shadow: 0 0 10px #00ffff;
-    background: rgba(255, 255, 255, 0.1);
+    text-shadow: 2px 2px 4px #000;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
