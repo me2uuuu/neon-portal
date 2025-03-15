@@ -145,9 +145,21 @@
         const soundBtn = document.getElementById("sound-btn");
 
         soundBtn.addEventListener("click", function() {
-            bgm.play();
-            soundBtn.style.display = "none"; // 버튼 숨기기
+            if (bgm.paused) {
+                bgm.play();
+                soundBtn.innerText = "🔇 사운드 OFF";
+            } else {
+                bgm.pause();
+                soundBtn.innerText = "🔊 사운드 ON";
+            }
         });
+
+        // 브라우저 정책 우회 (유저 액션 후 자동 재생)
+        document.addEventListener("click", function() {
+            if (bgm.paused) {
+                bgm.play().catch(error => console.log("자동재생 차단됨:", error));
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
