@@ -1,17 +1,17 @@
 const cardImages = [
-    { img: "audio/fire-cat.png", points: 100 },
-    { img: "audio/wind-cat.png", points: 80 },
-    { img: "audio/ice-cat.png", points: 60 },
-    { img: "audio/dark-neon-cat.png", points: 50 },
-    { img: "audio/thunder-cat.png", points: 70 },
-    { img: "audio/cyber-cat.png", points: 90 }
+    { img: "./fire-cat.png", points: 100 },
+    { img: "./wind-cat.png", points: 80 },
+    { img: "./ice-cat.png", points: 60 },
+    { img: "./dark-neon-cat.png", points: 50 },
+    { img: "./thunder-cat.png", points: 70 },
+    { img: "./cyber-cat.png", points: 90 }
 ];
 
 let score = 0;
-const cards = document.querySelectorAll(".card");
+const scoreDisplay = document.getElementById("score");
 
-// 카드 클릭 이벤트
-cards.forEach(card => {
+// 카드 클릭 이벤트 (이미지 정상 로딩 후에도 작동)
+document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", function() {
         const randomIndex = Math.floor(Math.random() * cardImages.length);
         const selectedCard = cardImages[randomIndex];
@@ -20,7 +20,7 @@ cards.forEach(card => {
 
         // 점수 업데이트
         score += selectedCard.points;
-        document.getElementById("score").innerText = `점수: ${score}`;
+        scoreDisplay.innerText = `점수: ${score}`;
     });
 });
 
