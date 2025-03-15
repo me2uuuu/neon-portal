@@ -3,32 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL GACHA</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Neon Portal P2E Gacha</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 배경 음악 -->
-    <audio id="bgm" loop>
-        <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
-    </audio>
-
-    <!-- 사운드 ON 버튼 -->
-    <button id="sound-btn">🔊 사운드 ON</button>
-
     <div class="container">
-        <h1>네온 포탈 가챠</h1>
-        
-        <!-- 카드 3개 -->
-        <div class="card-container">
-            <div class="card" id="card1">✨ Gacha Card ✨</div>
-            <div class="card" id="card2">✨ Gacha Card ✨</div>
-            <div class="card" id="card3">✨ Gacha Card ✨</div>
-        </div>
-
-        <!-- 점수 표시 -->
-        <p id="score">점수: 0</p>
+        <h1>🔮 Neon Portal P2E Gacha System</h1>
+        <button id="connectButton" onclick="connectWallet()">Connect Wallet</button>
+        <p id="nekoCoins">💰 NEKO coin: </p>
+        <button id="drawButton" onclick="drawCard()" disabled>🎴 Draw Gacha (10 NEKO)</button>
+        <div id="cardDisplay"></div>
     </div>
-
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
