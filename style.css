@@ -7,8 +7,9 @@ body {
     color: cyan;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
-    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center fixed;
+    background: url('https://me2uuuu.github.io/neon-portal/gifFile%206.GIF') no-repeat center fixed;
     background-size: cover;
+    overflow: hidden;
 }
 
 /* 컨테이너 스타일 */
@@ -62,7 +63,10 @@ h1 {
 
 /* 카드 뽑기 버튼 */
 #draw-card-btn {
-    margin-top: 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 12px 24px;
     font-size: 1.2em;
     background: #ff00ff;
@@ -72,13 +76,19 @@ h1 {
     cursor: pointer;
     text-shadow: 0 0 10px white;
     box-shadow: 0 0 10px #ff00ff;
+    z-index: 1000;
 }
 
 #draw-card-btn:hover {
     background: #ff33ff;
 }
 
-/* 🎴 이모지 제거 */
+/* 🎴 이모지 버튼 삭제 */
 button:contains("🎴"), .emoji-icon {
     display: none !important;
+}
+
+/* 배경음악 */
+#audio-bgm {
+    display: none;
 }
