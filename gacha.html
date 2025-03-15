@@ -4,163 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEON PORTAL GACHA</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('audio/gif_file_6.GIF') no-repeat center center fixed;
-            background-size: cover;
-            background-color: black;
-            overflow: hidden;
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
-            color: cyan;
-        }
-
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            height: 420px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #00ffcc;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px cyan;
-        }
-
-        .card-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card {
-            width: 100px;
-            height: 150px;
-            border-radius: 12px;
-            background: rgba(0, 255, 204, 0.2);
-            border: 2px solid cyan;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #00ffcc;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        .card:hover {
-            transform: scale(1.1);
-        }
-
-        /* 배경음악 버튼 */
-        #sound-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background: #00ffcc;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-shadow: 0 0 5px cyan;
-            box-shadow: 0 0 10px #00ffcc;
-        }
-
-        #sound-btn:hover {
-            background: #00ffaa;
-        }
-
-        /* 점수 표시 */
-        #score {
-            margin-top: 10px;
-            font-size: 1.2em;
-            color: yellow;
-            text-shadow: 0 0 10px yellow;
-        }
-
-        /* 배경음악 */
-        audio {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 배경 음악 -->
     <audio id="bgm" loop>
         <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
     </audio>
 
-    <!-- 사운드 ON 버튼 추가 -->
+    <!-- 사운드 ON 버튼 -->
     <button id="sound-btn">🔊 사운드 ON</button>
 
     <div class="container">
-        <h1> 네온 포탈 가챠 </h1>
+        <h1>네온 포탈 가챠</h1>
+        
+        <!-- 카드 3개 -->
         <div class="card-container">
-            <div class="card" id="card1">✨ TAP ✨</div>
-            <div class="card" id="card2">✨ TAP ✨</div>
-            <div class="card" id="card3">✨ TAP ✨</div>
+            <div class="card" id="card1">✨ Gacha Card ✨</div>
+            <div class="card" id="card2">✨ Gacha Card ✨</div>
+            <div class="card" id="card3">✨ Gacha Card ✨</div>
         </div>
+
+        <!-- 점수 표시 -->
         <p id="score">점수: 0</p>
     </div>
 
-    <script>
-        const cardImages = [
-            { img: "audio/fire-cat.png", points: 100 },
-            { img: "audio/wind-cat.png", points: 80 },
-            { img: "audio/ice-cat.png", points: 60 },
-            { img: "audio/dark-neon-cat.png", points: 50 },
-            { img: "audio/thunder-cat.png", points: 70 },
-            { img: "audio/cyber-cat.png", points: 90 }
-        ];
-
-        let score = 0;
-
-        document.querySelectorAll(".card").forEach(card => {
-            card.addEventListener("click", function() {
-                const randomIndex = Math.floor(Math.random() * cardImages.length);
-                const selectedCard = cardImages[randomIndex];
-                this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card">`;
-                
-                // 점수 업데이트
-                score += selectedCard.points;
-                document.getElementById("score").innerText = `점수: ${score}`;
-            });
-        });
-
-        // 사운드 ON 버튼 기능 추가
-        const bgm = document.getElementById("bgm");
-        const soundBtn = document.getElementById("sound-btn");
-
-        soundBtn.addEventListener("click", function() {
-            bgm.play();
-            soundBtn.style.display = "none"; // 버튼 숨기기
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
