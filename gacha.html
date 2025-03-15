@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEON PORTAL GACHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
         body {
             margin: 0;
             padding: 0;
@@ -53,6 +52,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             font-size: 1.2em;
             color: #00ffcc;
             cursor: pointer;
@@ -75,15 +75,11 @@
         #gacha-card:hover {
             transform: scale(1.1);
         }
-
-        /* 배경음악 */
-        audio {
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <audio autoplay loop>
+    <!-- 배경음악 (클릭하면 재생) -->
+    <audio id="bgm" loop>
         <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_gacha_bgm.mp3" type="audio/mp3">
     </audio>
 
@@ -93,6 +89,7 @@
     </div>
 
     <script>
+        // 카드 리스트
         const cardImages = [
             "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/fire-cat.png",
             "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/wind-cat.png",
@@ -102,11 +99,16 @@
             "https://raw.githubusercontent.com/me2uuuu/neon-portal/main/cyber-cat.png"
         ];
 
+        // 가챠 카드 클릭 시 이미지 변경
         document.getElementById("gacha-card").addEventListener("click", function() {
             const randomIndex = Math.floor(Math.random() * cardImages.length);
-            this.innerHTML = `<img src="${cardImages[randomIndex]}" alt="Gacha Card">`;
+            this.innerHTML = `<img src="${cardImages[randomIndex]}" alt="Gacha Card"><br>✨ TAP TO DRAW AGAIN ✨`;
         });
+
+        // 첫 번째 클릭 시 배경음악 자동 재생
+        document.body.addEventListener("click", function() {
+            document.getElementById("bgm").play();
+        }, { once: true });
     </script>
 </body>
 </html>
-
