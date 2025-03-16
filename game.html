@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,34 @@
 </head>
 <body>
     <p id="score">점수: 0</p>
-    <img id="neon-cat" src="assets/neoncat.GIF" onclick="clickCat()">
+    <img id="neon-cat" src="images/neoncat.gif" onclick="clickCat()">
     
     <audio autoplay loop>
-        <source src="assets/neon_singularity_bgm.mp3" type="audio/mp3">
+        <source src="audio/neon_singularity_bgm.mp3" type="audio/mp3">
     </audio>
 
-    <button id="gacha-btn" onclick="location.href='gacha.html'">🎴 가챠 돌리기</button>
+    <script>
+        let score = 0;
+        const cat = document.getElementById("neon-cat");
+        const scoreDisplay = document.getElementById("score");
 
-    <script src="script.js"></script>
+        function moveCat() {
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 150;
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            cat.style.left = newX + "px";
+            cat.style.top = newY + "px";
+        }
+
+        function clickCat() {
+            score++;
+            scoreDisplay.innerHTML = "점수: " + score;
+            moveCat();
+        }
+
+        moveCat();
+        setInterval(moveCat, 2000);
+    </script>
 </body>
 </html>
