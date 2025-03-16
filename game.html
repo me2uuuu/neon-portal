@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neon Chase</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
@@ -32,7 +33,6 @@
             left: 10px;
         }
 
-        /* 카드 뽑기 버튼 */
         #gacha-btn {
             position: fixed;
             bottom: 20px;
@@ -48,28 +48,20 @@
             text-shadow: 0 0 10px white;
             box-shadow: 0 0 10px #ff00ff;
             z-index: 1000;
-            display: block; /* 버튼이 확실히 보이도록 */
+            display: block;
         }
 
         #gacha-btn:hover {
             background: #ff33ff;
         }
 
-        audio {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <p id="score">점수: 0</p>
     <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()">
-    
-    <audio autoplay loop>
-        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_singularity_bgm.mp3" type="audio/mp3">
-    </audio>
 
-    <!-- 카드 뽑기 버튼 추가 -->
-    <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
+    <button id="gacha-btn" onclick="location.href='gacha.html'">🎴 가챠 뽑기</button>
 
     <script>
         let score = 0;
@@ -83,21 +75,12 @@
             const newY = Math.floor(Math.random() * maxY);
             cat.style.left = newX + "px";
             cat.style.top = newY + "px";
-
-            // 랜덤한 크기와 회전 추가 (기묘한 패턴)
-            const rotate = Math.random() * 360;
-            const scale = 0.7 + Math.random() * 0.6;
-            cat.style.transform = `rotate(${rotate}deg) scale(${scale})`;
         }
 
         function clickCat() {
             score++;
             scoreDisplay.innerHTML = "점수: " + score;
             moveCat();
-        }
-
-        function goToGacha() {
-            window.location.href = "gacha.html"; // 카드 뽑기 페이지로 이동
         }
 
         moveCat();
