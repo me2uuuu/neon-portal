@@ -7,17 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 배경 음악 -->
     <audio id="bgm" loop>
         <source src="https://me2uuuu.github.io/neon-portal/audio/neon_gacha_bgm.mp3" type="audio/mp3">
     </audio>
 
+    <!-- 사운드 ON 버튼 -->
     <button id="sound-btn">🔊 사운드 ON</button>
 
     <div class="container">
         <h1>네온 포탈 가챠</h1>
-        <p id="nekoCoins">💰 NEKO 코인: 100</p>
-        <button onclick="drawCard()">🎴 가챠 돌리기 (10 NEKO)</button>
-        <div id="cardDisplay"></div>
+        
+        <!-- 카드 3개 (기본 뒷면) -->
+        <div class="card-container">
+            <div class="card" id="card1"><img src="https://me2uuuu.github.io/neon-portal/card-back.png" alt="Card Back"></div>
+            <div class="card" id="card2"><img src="https://me2uuuu.github.io/neon-portal/card-back.png" alt="Card Back"></div>
+            <div class="card" id="card3"><img src="https://me2uuuu.github.io/neon-portal/card-back.png" alt="Card Back"></div>
+        </div>
+
+        <!-- 점수 표시 -->
+        <p id="score">점수: 0</p>
     </div>
 
     <script src="script.js"></script>
