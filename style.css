@@ -3,119 +3,59 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('gifFile777.jpeg') no-repeat center center fixed;
+    background: url('https://me2uuuu.github.io/neon-portal/gif_file_6.GIF') no-repeat center center fixed;
     background-size: cover;
     background-color: black;
+    overflow: hidden;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
     color: cyan;
 }
 
-.portal-container {
+.container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #0ff;
-    width: 600px;
-}
-
-.title {
-    font-size: 2.5em;
-    text-shadow: 0 0 10px cyan;
-}
-
-.sub-text {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-}
-
-button {
-    background: linear-gradient(90deg, #ff00ff, #00ffff);
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #ff00ff;
-    transition: 0.3s;
-    margin: 10px;
-}
-
-button:hover {
-    box-shadow: 0 0 20px #00ffff;
-}
-
-.game-container {
-    margin: 20px 0;
-}
-
-#neon-cat {
-    width: 150px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-#score {
-    font-size: 20px;
-    margin: 10px;
-    text-shadow: 2px 2px 4px #000;
-}
-
-#gacha-btn {
-    font-size: 16px;
-    padding: 10px 20px;
-    background: #ff00ff;
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ff00ff;
-}
-
-#cardDisplay {
-    margin-top: 10px;
-}
-
-.card {
-    display: inline-block;
-    width: 120px;
-    height: 180px;
-    border: 2px solid cyan;
-    border-radius: 10px;
-    background: rgba(0, 255, 204, 0.2);
+    width: 400px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2em;
-    color: #00ffcc;
-    cursor: pointer;
-    transition: transform 0.3s;
-    margin: 5px;
+    flex-direction: column;
 }
 
-#sound-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+h1 {
+    font-size: 1.8em;
+    text-shadow: 0 0 10px cyan;
+}
+
+.button-group {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
     padding: 10px 20px;
     font-size: 16px;
-    background: #00ffcc;
-    color: black;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-shadow: 0 0 5px cyan;
-    box-shadow: 0 0 10px #00ffcc;
+    box-shadow: 0 0 10px #ff00ff;
 }
 
-#sound-btn:hover {
-    background: #00ffaa;
+button:hover {
+    background: #ff33ff;
 }
 
-audio {
-    display: none;
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
