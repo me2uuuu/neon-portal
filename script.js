@@ -1,53 +1,35 @@
-const cardPool = [
-    { name: "Cyber Warrior", rarity: "Common", power: 10, img: "https://me2uuuu.github.io/neon-portal/cyber-cat.png" },
-    { name: "Neon Assassin", rarity: "Common", power: 12, img: "https://me2uuuu.github.io/neon-portal/fire-cat.png" },
-    { name: "AI Hacker", rarity: "Rare", power: 20, img: "https://me2uuuu.github.io/neon-portal/thunder-cat.png" },
-    { name: "Quantum Sorcerer", rarity: "Rare", power: 22, img: "https://me2uuuu.github.io/neon-portal/ice-cat.png" },
-    { name: "Glitch Phantom", rarity: "Legendary", power: 35, img: "https://me2uuuu.github.io/neon-portal/dark-neon-cat.png" },
-    { name: "Neon Overlord", rarity: "Legendary", power: 40, img: "https://me2uuuu.github.io/neon-portal/wind-cat.png" }
+const cardImages = [
+    { img: "https://me2uuuu.github.io/neon-portal/fire-cat.png", points: 100 },
+    { img: "https://me2uuuu.github.io/neon-portal/wind-cat.png", points: 80 },
+    { img: "https://me2uuuu.github.io/neon-portal/ice-cat.png", points: 60 },
+    { img: "https://me2uuuu.github.io/neon-portal/dark-neon-cat.png", points: 50 },
+    { img: "https://me2uuuu.github.io/neon-portal/thunder-cat.png", points: 70 },
+    { img: "https://me2uuuu.github.io/neon-portal/cyber-cat.png", points: 90 }
 ];
 
-const rarityChances = {
-    "Common": 0.6,
-    "Rare": 0.3,
-    "Legendary": 0.1
-};
+let score = 0;
+const scoreDisplay = document.getElementById("score");
 
-let nekoCoins = 100; 
+// 카드 클릭 이벤트 (이미지 정상 로딩 후에도 작동)
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", function() {
+        const randomIndex = Math.floor(Math.random() * cardImages.length);
+        const selectedCard = cardImages[randomIndex];
 
-function drawCard() {
-    if (nekoCoins < 10) {
-        alert("❌ NEKO 코인이 부족합니다! 더 모으세요.");
-        return;
-    }
-    nekoCoins -= 10; 
+        this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card">`;
 
-    const roll = Math.random();
-    let rarity;
-    if (roll < rarityChances["Legendary"]) {
-        rarity = "Legendary";
-    } else if (roll < rarityChances["Legendary"] + rarityChances["Rare"]) {
-        rarity = "Rare";
-    } else {
-        rarity = "Common";
-    }
+        // 점수 업데이트
+        score += selectedCard.points;
+        scoreDisplay.innerText = `점수: ${score}`;
+    });
+});
 
-    const possibleCards = cardPool.filter(card => card.rarity === rarity);
-    const drawnCard = possibleCards[Math.floor(Math.random() * possibleCards.length)];
-
-    document.getElementById("cardDisplay").innerHTML = 
-        `<img src="${drawnCard.img}" alt="${drawnCard.name}" style="width: 150px; height: 200px;"> 
-        <p>${drawnCard.name} (등급: ${drawnCard.rarity}, Power: ${drawnCard.power})</p>`;
-
-    nekoCoins += drawnCard.power;
-    document.getElementById("nekoCoins").innerText = `💰 NEKO 코인: ${nekoCoins}`;
-}
-
-// 사운드 기능
+// 사운드 ON 버튼 기능 추가
 const bgm = document.getElementById("bgm");
 const soundBtn = document.getElementById("sound-btn");
 
 soundBtn.addEventListener("click", function() {
     bgm.play();
-    soundBtn.style.display = "none";
+    soundBtn.style.display = "none"; // 버튼 숨기기
 });
+
