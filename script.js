@@ -1,11 +1,10 @@
 const { ethers } = window;
 
-const NEKO_ADDRESS = "0x..."; // NEKO 코인 스마트 컨트랙트 주소
-const GACHA_CONTRACT_ADDRESS = "0x..."; // 가챠 스마트 컨트랙트 주소
+const NEKO_ADDRESS = "0x..."; // 배포 후 주소 변경
+const NEKO_ABI = [...]; // ERC-20 ABI 추가
 
 let userAddress;
 let nekoTokenContract;
-let gachaContract;
 
 async function connectWallet() {
     if (window.ethereum) {
@@ -14,43 +13,57 @@ async function connectWallet() {
             const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
             userAddress = await signer.getAddress();
-
             nekoTokenContract = new ethers.Contract(NEKO_ADDRESS, NEKO_ABI, signer);
-            gachaContract = new ethers.Contract(GACHA_CONTRACT_ADDRESS, GACHA_ABI, signer);
-
-            document.getElementById("connectWallet").innerText = "✅ 연결됨";
-            document.getElementById("drawCard").disabled = false;
+            document.getElementById("connectWallet").style.display = "none";
             await updateNekoBalance();
         } catch (error) {
             console.error(error);
             alert("지갑 연결 오류");
         }
     } else {
-        alert("MetaMask를 설치하세요.");
+        alert("MetaMask 설치 필요");
     }
 }
 
 async function updateNekoBalance() {
     const balance = await nekoTokenContract.balanceOf(userAddress);
-    document.getElementById("nekoCoins").textContent = `💰 NEKO 코인: ${ethers.formatUnits(balance, 18)}`;
+    const formattedBalance = ethers.formatUnits(balance, 18);
+    document.getElementById("nekoBalance").textContent = `💰 NEKO 코인: ${formattedBalance}`;
 }
 
-async function drawCard() {
-    try {
-        const balance = await nekoTokenContract.balanceOf(userAddress);
-        if (balance < ethers.parseUnits("10", 18)) {
-            alert("NEKO 코인이 부족합니다.");
-            return;
-        }
-        const tx = await gachaContract.drawCard();
-        await tx.wait();
-        await updateNekoBalance();
-        alert("🎴 가챠 성공! 카드가 추가되었습니다.");
-    } catch (error) {
-        console.error(error);
-        alert("가챠 오류 발생");
+let score = 0;
+const cat = document.getElementById("neon-cat");
+const scoreDisplay = document.getElementById("score");
+
+function moveCat() {
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 150;
+    const newX = Math.floor(Math.random() * maxX);
+    const newY = Math.floor(Math.random() * maxY);
+    cat.style.left = newX + "px";
+    cat.style.top = newY + "px";
+    cat.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.7 + Math.random() * 0.6})`;
+}
+
+function clickCat() {
+    score++;
+    scoreDisplay.innerHTML = `점수: ${score}`;
+    moveCat();
+}
+
+const bgm = document.getElementById("bgm");
+const soundBtn = document.getElementById("sound-btn");
+
+soundBtn.addEventListener("click", function() {
+    bgm.play();
+    soundBtn.style.display = "none";
+});
+
+moveCat();
+setInterval(moveCat, 2000);
+
+window.onload = function() {
+    if (window.ethereum && window.ethereum.isConnected()) {
+        connectWallet();
     }
-}
-
-document.getElementById("connectWallet").addEventListener("click", connectWallet);
-document.getElementById("drawCard").addEventListener("click", drawCard);
+};
