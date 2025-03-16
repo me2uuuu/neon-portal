@@ -1,10 +1,10 @@
 const cardImages = [
-    { img: "images/fire-cat.png", points: 100 },
-    { img: "images/wind-cat.png", points: 80 },
-    { img: "images/ice-cat.png", points: 60 },
-    { img: "images/dark-neon-cat.png", points: 50 },
-    { img: "images/thunder-cat.png", points: 70 },
-    { img: "images/cyber-cat.png", points: 90 }
+    { img: "https://me2uuuu.github.io/neon-portal/fire-cat.png", points: 100 },
+    { img: "https://me2uuuu.github.io/neon-portal/wind-cat.png", points: 80 },
+    { img: "https://me2uuuu.github.io/neon-portal/ice-cat.png", points: 60 },
+    { img: "https://me2uuuu.github.io/neon-portal/dark-neon-cat.png", points: 50 },
+    { img: "https://me2uuuu.github.io/neon-portal/thunder-cat.png", points: 70 },
+    { img: "https://me2uuuu.github.io/neon-portal/cyber-cat.png", points: 90 }
 ];
 
 let score = 0;
@@ -14,6 +14,7 @@ document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", function() {
         const randomIndex = Math.floor(Math.random() * cardImages.length);
         const selectedCard = cardImages[randomIndex];
+
         this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card">`;
         score += selectedCard.points;
         scoreDisplay.innerText = `점수: ${score}`;
