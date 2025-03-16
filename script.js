@@ -1,88 +1,65 @@
-const { ethers } = window;
+const cardImages = [
+    { img: "./fire-cat.png", points: 100, rarity: "Legendary" },
+    { img: "./wind-cat.png", points: 80, rarity: "Rare" },
+    { img: "./ice-cat.png", points: 60, rarity: "Rare" },
+    { img: "./dark-neon-cat.png", points: 50, rarity: "Common" },
+    { img: "./thunder-cat.png", points: 70, rarity: "Rare" },
+    { img: "./cyber-cat.png", points: 90, rarity: "Epic" }
+];
 
-const NEKO_ABI = [...]; // 실제 ABI로 교체
-const CARD_CONTRACT_ABI = [...]; // 실제 ABI로 교체
-const GACHA_CONTRACT_ABI = [...]; // 실제 ABI로 교체
+let score = 0;
+let nekoCoins = 100; // 기본 100 NEKO 시작
 
-const NEKO_ADDRESS = "0x..."; // 배포 후 실제 주소로 교체
-const CARD_CONTRACT_ADDRESS = "0x..."; // 배포 후 실제 주소로 교체
-const GACHA_CONTRACT_ADDRESS = "0x..."; // 배포 후 실제 주소로 교체
+const scoreDisplay = document.getElementById("score");
+const nekoDisplay = document.getElementById("nekoCoins");
+const gachaButton = document.getElementById("gacha-btn");
 
-let userAddress;
-let nekoTokenContract;
-let cardContract;
-let gachaContract;
+// 카드 뽑기 이벤트 (애니메이션 추가)
+gachaButton.addEventListener("click", function() {
+    if (nekoCoins < 10) {
+        alert("❌ NEKO 코인이 부족합니다!");
+        return;
+    }
 
-async function connectWallet() {
-    if (window.ethereum) {
-        try {
-            await window.ethereum.enable();
-            const provider = new ethers.BrowserProvider(window.ethereum);
-            const signer = await provider.getSigner();
-            userAddress = await signer.getAddress();
-            nekoTokenContract = new ethers.Contract(NEKO_ADDRESS, NEKO_ABI, signer);
-            cardContract = new ethers.Contract(CARD_CONTRACT_ADDRESS, CARD_CONTRACT_ABI, signer);
-            gachaContract = new ethers.Contract(GACHA_CONTRACT_ADDRESS, GACHA_CONTRACT_ABI, signer);
-            document.getElementById("connectButton").style.display = "none";
-            document.getElementById("drawButton").disabled = false;
-            await updateNekoBalance();
-            await displayCards();
-        } catch (error) {
-            console.error(error);
-            alert("Error connecting wallet");
-        }
+    nekoCoins -= 10; // 코인 차감
+    nekoDisplay.innerText = `💰 NEKO 코인: ${nekoCoins}`;
+
+    const randomIndex = Math.floor(Math.random() * cardImages.length);
+    const selectedCard = cardImages[randomIndex];
+
+    const cardElement = document.getElementById("card-result");
+    cardElement.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card">`;
+    
+    // 등급별 효과 추가
+    cardElement.classList.remove("common", "rare", "epic", "legendary");
+    cardElement.classList.add(selectedCard.rarity.toLowerCase());
+
+    // 애니메이션 효과 (반짝이게)
+    cardElement.style.animation = "glow 0.8s infinite alternate";
+
+    // 점수 증가
+    score += selectedCard.points;
+    scoreDisplay.innerText = `점수: ${score}`;
+});
+
+// 배경음악 ON/OFF 기능 추가 (localStorage 적용)
+const bgm = document.getElementById("bgm");
+const soundBtn = document.getElementById("sound-btn");
+
+// 기존 설정 기억하기 (localStorage 활용)
+if (localStorage.getItem("bgmStatus") === "on") {
+    bgm.play();
+    soundBtn.innerText = "🔇 사운드 OFF";
+}
+
+soundBtn.addEventListener("click", function() {
+    if (bgm.paused) {
+        bgm.play();
+        soundBtn.innerText = "🔇 사운드 OFF";
+        localStorage.setItem("bgmStatus", "on");
     } else {
-        alert("Please install MetaMask");
+        bgm.pause();
+        soundBtn.innerText = "🔊 사운드 ON";
+        localStorage.setItem("bgmStatus", "off");
     }
-}
-
-async function updateNekoBalance() {
-    const balance = await nekoTokenContract.balanceOf(userAddress);
-    const formattedBalance = ethers.formatUnits(balance, 18);
-    document.getElementById("nekoCoins").textContent = `💰 NEKO coin: ${formattedBalance}`;
-}
-
-async function displayCards() {
-    const tokenIds = await cardContract.getTokensOfOwner(userAddress);
-    let cardHtml = "";
-    for (const tokenId of tokenIds) {
-        const tokenURI = await cardContract.tokenURI(tokenId);
-        const response = await fetch(tokenURI);
-        const metadata = await response.json();
-        const name = metadata.name;
-        const imageUrl = metadata.image;
-        cardHtml += `<div class="card ${metadata.rarity.toLowerCase()}">
-            <img src="${imageUrl}" alt="${name}">
-            <p>${name} (Grade: ${metadata.rarity}, Power: ${metadata.power})</p>
-        </div>`;
-    }
-    document.getElementById("cardDisplay").innerHTML = cardHtml;
-}
-
-async function drawCard() {
-    try {
-        const balance = await nekoTokenContract.balanceOf(userAddress);
-        if (balance < ethers.parseUnits("10", 18)) {
-            alert("Insufficient NEKO coins");
-            return;
-        }
-        const allowance = await nekoTokenContract.allowance(userAddress, GACHA_CONTRACT_ADDRESS);
-        if (allowance < ethers.parseUnits("10", 18)) {
-            const tx = await nekoTokenContract.approve(GACHA_CONTRACT_ADDRESS, ethers.parseUnits("1000", 18));
-            await tx.wait();
-        }
-        const tx = await gachaContract.drawCard();
-        await tx.wait();
-        await updateNekoBalance();
-        await displayCards();
-    } catch (error) {
-        console.error(error);
-        alert("Error drawing card");
-    }
-}
-
-window.onload = function() {
-    if (window.ethereum && window.ethereum.isConnected()) {
-        connectWallet();
-    }
-};
+});
