@@ -1,10 +1,15 @@
 const { ethers } = window;
 
-const NEKO_ADDRESS = "0x..."; // 배포 후 주소 변경
-const NEKO_ABI = [...]; // ERC-20 ABI 추가
+// 스마트 컨트랙트 정보 (테스트넷 배포 후 주소 변경 필요)
+const NEKO_ABI = [...]; 
+const GACHA_CONTRACT_ABI = [...];
+
+const NEKO_ADDRESS = "0x...";
+const GACHA_CONTRACT_ADDRESS = "0x...";
 
 let userAddress;
 let nekoTokenContract;
+let gachaContract;
 
 async function connectWallet() {
     if (window.ethereum) {
@@ -14,56 +19,43 @@ async function connectWallet() {
             const signer = await provider.getSigner();
             userAddress = await signer.getAddress();
             nekoTokenContract = new ethers.Contract(NEKO_ADDRESS, NEKO_ABI, signer);
-            document.getElementById("connectWallet").style.display = "none";
+            gachaContract = new ethers.Contract(GACHA_CONTRACT_ADDRESS, GACHA_CONTRACT_ABI, signer);
+            document.getElementById("connectButton").style.display = "none";
+            document.getElementById("drawButton").disabled = false;
             await updateNekoBalance();
         } catch (error) {
             console.error(error);
             alert("지갑 연결 오류");
         }
     } else {
-        alert("MetaMask 설치 필요");
+        alert("MetaMask를 설치하세요!");
     }
 }
 
 async function updateNekoBalance() {
     const balance = await nekoTokenContract.balanceOf(userAddress);
-    const formattedBalance = ethers.formatUnits(balance, 18);
-    document.getElementById("nekoBalance").textContent = `💰 NEKO 코인: ${formattedBalance}`;
+    document.getElementById("nekoCoins").textContent = `💰 NEKO 코인: ${ethers.formatUnits(balance, 18)}`;
 }
 
-let score = 0;
-const cat = document.getElementById("neon-cat");
-const scoreDisplay = document.getElementById("score");
-
-function moveCat() {
-    const maxX = window.innerWidth - 150;
-    const maxY = window.innerHeight - 150;
-    const newX = Math.floor(Math.random() * maxX);
-    const newY = Math.floor(Math.random() * maxY);
-    cat.style.left = newX + "px";
-    cat.style.top = newY + "px";
-    cat.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.7 + Math.random() * 0.6})`;
-}
-
-function clickCat() {
-    score++;
-    scoreDisplay.innerHTML = `점수: ${score}`;
-    moveCat();
-}
-
-const bgm = document.getElementById("bgm");
-const soundBtn = document.getElementById("sound-btn");
-
-soundBtn.addEventListener("click", function() {
-    bgm.play();
-    soundBtn.style.display = "none";
-});
-
-moveCat();
-setInterval(moveCat, 2000);
-
-window.onload = function() {
-    if (window.ethereum && window.ethereum.isConnected()) {
-        connectWallet();
+async function drawCard() {
+    try {
+        const balance = await nekoTokenContract.balanceOf(userAddress);
+        if (balance < ethers.parseUnits("10", 18)) {
+            alert("NEKO 코인이 부족합니다!");
+            return;
+        }
+        const tx = await gachaContract.drawCard();
+        await tx.wait();
+        await updateNekoBalance();
+    } catch (error) {
+        console.error(error);
+        alert("가챠 실패");
     }
-};
+}
+
+// 배경 음악 컨트롤
+const bgm = document.getElementById("bgm");
+document.getElementById("sound-btn").addEventListener("click", () => {
+    bgm.play();
+    document.getElementById("sound-btn").style.display = "none";
+});
