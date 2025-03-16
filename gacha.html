@@ -7,12 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="connectWallet">🔗 MetaMask 연결</button>
-    <p id="nekoCoins">💰 NEKO 코인: </p>
-    <button id="drawCard" disabled>🎴 가챠 돌리기 (10 NEKO)</button>
-    <div id="cardDisplay"></div>
+    <!-- 배경 음악 -->
+    <audio id="bgm" loop>
+        <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
+    </audio>
 
-    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
-    <script src="contract.js"></script>
+    <div class="container">
+        <h1>🎴 네온 포탈 가챠</h1>
+
+        <button id="connectButton" onclick="connectWallet()">🦊 MetaMask 연결</button>
+        <p id="nekoCoins">💰 NEKO 코인: 연결 필요</p>
+
+        <button id="drawButton" onclick="drawCard()" disabled>🎴 가챠 돌리기 (10 NEKO)</button>
+
+        <div id="cardDisplay"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
