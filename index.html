@@ -7,25 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 배경 음악 -->
-    <audio id="bgm" loop>
-        <source src="audio/neon_portal_bgm.mp3" type="audio/mp3">
-    </audio>
-
     <div class="container">
-        <h1>🔮 NEON PORTAL</h1>
-        <p>포탈을 통해 네온 차원으로 진입하십시오.</p>
+        <h1 class="title">🔮 NEON PORTAL</h1>
+        <p class="sub-text">포탈을 통해 네온 차원으로 진입하십시오.</p>
         
-        <button id="connectButton" onclick="connectWallet()">🦊 MetaMask 연결</button>
+        <button id="connect-wallet">😺 MetaMask 연결</button>
         <p id="nekoCoins">💰 NEKO 코인: 연결 필요</p>
 
-        <button onclick="location.href='game.html'">🎮 게임 시작</button>
-        <button onclick="location.href='gacha.html'">🎴 가챠 돌리기</button>
-
-        <!-- 사운드 버튼 -->
-        <button id="sound-btn">🔊 사운드 ON</button>
+        <div class="button-group">
+            <button id="start-game">🎮 게임 시작</button>
+            <button id="go-gacha">🎰 가챠 돌리기</button>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('start-game').addEventListener('click', function() {
+            window.location.href = "game.html";
+        });
+
+        document.getElementById('go-gacha').addEventListener('click', function() {
+            window.location.href = "gacha.html";
+        });
+    </script>
 </body>
 </html>
