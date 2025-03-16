@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 배경 음악 -->
     <audio id="bgm" loop>
-        <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
+        <source src="https://me2uuuu.github.io/neon-portal/audio/neon_gacha_bgm.mp3" type="audio/mp3">
     </audio>
 
+    <button id="sound-btn">🔊 사운드 ON</button>
+
     <div class="container">
-        <h1>🎴 네온 포탈 가챠</h1>
+        <h1>🎰 네온 포탈 가챠</h1>
 
-        <button id="connectButton" onclick="connectWallet()">🦊 MetaMask 연결</button>
+        <button id="connect-wallet">😺 MetaMask 연결</button>
         <p id="nekoCoins">💰 NEKO 코인: 연결 필요</p>
-
-        <button id="drawButton" onclick="drawCard()" disabled>🎴 가챠 돌리기 (10 NEKO)</button>
+        <button id="draw-card" disabled>🎴 가챠 돌리기 (10 NEKO)</button>
 
         <div id="cardDisplay"></div>
     </div>
