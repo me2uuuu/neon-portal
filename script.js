@@ -1,34 +1,89 @@
-const cardImages = [
-    { img: "https://me2uuuu.github.io/neon-portal/fire-cat.png", points: 100 },
-    { img: "https://me2uuuu.github.io/neon-portal/wind-cat.png", points: 80 },
-    { img: "https://me2uuuu.github.io/neon-portal/ice-cat.png", points: 60 },
-    { img: "https://me2uuuu.github.io/neon-portal/dark-neon-cat.png", points: 50 },
-    { img: "https://me2uuuu.github.io/neon-portal/thunder-cat.png", points: 70 },
-    { img: "https://me2uuuu.github.io/neon-portal/cyber-cat.png", points: 90 }
-];
+const { ethers } = window;
 
-let score = 0;
-const scoreDisplay = document.getElementById("score");
+// Replace with actual contract addresses and ABIs
+const NEKO_ADDRESS = "0x...";
+const CARD_CONTRACT_ADDRESS = "0x...";
+const GACHA_CONTRACT_ADDRESS = "0x...";
 
-// 카드 클릭 이벤트 (이미지 정상 로딩 후에도 작동)
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", function() {
-        const randomIndex = Math.floor(Math.random() * cardImages.length);
-        const selectedCard = cardImages[randomIndex];
+const NEKO_ABI = [...];
+const CARD_CONTRACT_ABI = [...];
+const GACHA_CONTRACT_ABI = [...];
 
-        this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card">`;
+let userAddress;
+let nekoTokenContract;
+let cardContract;
+let gachaContract;
 
-        // 점수 업데이트
-        score += selectedCard.points;
-        scoreDisplay.innerText = `점수: ${score}`;
-    });
-});
+async function connectWallet() {
+    if (window.ethereum) {
+        try {
+            await window.ethereum.enable();
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const signer = await provider.getSigner();
+            userAddress = await signer.getAddress();
+            nekoTokenContract = new ethers.Contract(NEKO_ADDRESS, NEKO_ABI, signer);
+            cardContract = new ethers.Contract(CARD_CONTRACT_ADDRESS, CARD_CONTRACT_ABI, signer);
+            gachaContract = new ethers.Contract(GACHA_CONTRACT_ADDRESS, GACHA_CONTRACT_ABI, signer);
+            document.getElementById("connectButton").style.display = "none";
+            document.getElementById("drawButton").disabled = false;
+            await updateNekoBalance();
+            await displayCards();
+        } catch (error) {
+            console.error(error);
+            alert("Error connecting wallet");
+        }
+    } else {
+        alert("Please install MetaMask");
+    }
+}
 
-// 사운드 ON 버튼 기능 추가
-const bgm = document.getElementById("bgm");
-const soundBtn = document.getElementById("sound-btn");
+async function updateNekoBalance() {
+    const balance = await nekoTokenContract.balanceOf(userAddress);
+    const formattedBalance = ethers.formatUnits(balance, 18);
+    document.getElementById("nekoCoins").textContent = `💰 NEKO coin: ${formattedBalance}`
+}
 
-soundBtn.addEventListener("click", function() {
-    bgm.play();
-    soundBtn.style.display = "none"; // 버튼 숨기기
-});
+async function drawCard() {
+    try {
+        const balance = await nekoTokenContract.balanceOf(userAddress);
+        if (balance < ethers.parseUnits("10", 18)) {
+            alert("Insufficient NEKO coins");
+            return;
+        }
+        const allowance = await nekoTokenContract.allowance(userAddress, GACHA_CONTRACT_ADDRESS);
+        if (allowance < ethers.parseUnits("10", 18)) {
+            const tx = await nekoTokenContract.approve(GACHA_CONTRACT_ADDRESS, ethers.parseUnits("1000", 18));
+            await tx.wait();
+        }
+        const tx = await gachaContract.drawCard();
+        await tx.wait();
+        await updateNekoBalance();
+        await displayCards();
+    } catch (error) {
+        console.error(error);
+        alert("Error drawing card");
+    }
+}
+
+async function displayCards() {
+    const tokenIds = await cardContract.getTokensOfOwner(userAddress);
+    let cardHtml = "";
+    for (const tokenId of tokenIds) {
+        const tokenURI = await cardContract.tokenURI(tokenId);
+        const response = await fetch(tokenURI);
+        const metadata = await response.json();
+        const name = metadata.name;
+        const imageUrl = metadata.image;
+        cardHtml += `<div class="card ${metadata.rarity.toLowerCase()}">
+            <img src="${imageUrl}" alt="${name}">
+            <p>${name} (Grade: ${metadata.rarity}, Power: ${metadata.power})</p>
+        </div>`;
+    }
+    document.getElementById("cardDisplay").innerHTML = cardHtml;
+}
+
+window.onload = function() {
+    if (window.ethereum && window.ethereum.isConnected()) {
+        connectWallet();
+    }
+};
