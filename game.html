@@ -8,13 +8,13 @@
 </head>
 <body>
     <p id="score">점수: 0</p>
-    <img id="neon-cat" src="https://me2uuuu.github.io/neon-portal/neoncat.GIF" alt="Neon Cat" onclick="clickCat()">
-    
+    <img id="neon-cat" src="https://me2uuuu.github.io/neon-portal/docs/neoncat.GIF" onclick="clickCat()">
+
     <audio autoplay loop>
         <source src="https://me2uuuu.github.io/neon-portal/audio/neon_singularity_bgm.mp3" type="audio/mp3">
     </audio>
 
-    <button id="gacha-btn" onclick="goToGacha()">🎴 가챠 페이지 이동</button>
+    <button id="gacha-btn" onclick="goToGacha()">🎴 카드 뽑기</button>
 
     <script>
         let score = 0;
@@ -36,7 +36,7 @@
 
         function clickCat() {
             score++;
-            scoreDisplay.innerHTML = `점수: ${score}`;
+            scoreDisplay.innerHTML = "점수: " + score;
             moveCat();
         }
 
