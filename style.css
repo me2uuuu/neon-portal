@@ -1,56 +1,121 @@
-const { ethers } = window;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-const NEKO_ADDRESS = "0x..."; // NEKO 코인 스마트 컨트랙트 주소
-const GACHA_CONTRACT_ADDRESS = "0x..."; // 가챠 스마트 컨트랙트 주소
-
-let userAddress;
-let nekoTokenContract;
-let gachaContract;
-
-async function connectWallet() {
-    if (window.ethereum) {
-        try {
-            await window.ethereum.enable();
-            const provider = new ethers.BrowserProvider(window.ethereum);
-            const signer = await provider.getSigner();
-            userAddress = await signer.getAddress();
-
-            nekoTokenContract = new ethers.Contract(NEKO_ADDRESS, NEKO_ABI, signer);
-            gachaContract = new ethers.Contract(GACHA_CONTRACT_ADDRESS, GACHA_ABI, signer);
-
-            document.getElementById("connectWallet").innerText = "✅ 연결됨";
-            document.getElementById("drawCard").disabled = false;
-            await updateNekoBalance();
-        } catch (error) {
-            console.error(error);
-            alert("지갑 연결 오류");
-        }
-    } else {
-        alert("MetaMask를 설치하세요.");
-    }
+body {
+    margin: 0;
+    padding: 0;
+    background: url('gifFile777.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: black;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: cyan;
 }
 
-async function updateNekoBalance() {
-    const balance = await nekoTokenContract.balanceOf(userAddress);
-    document.getElementById("nekoCoins").textContent = `💰 NEKO 코인: ${ethers.formatUnits(balance, 18)}`;
+.portal-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0ff;
+    width: 600px;
 }
 
-async function drawCard() {
-    try {
-        const balance = await nekoTokenContract.balanceOf(userAddress);
-        if (balance < ethers.parseUnits("10", 18)) {
-            alert("NEKO 코인이 부족합니다.");
-            return;
-        }
-        const tx = await gachaContract.drawCard();
-        await tx.wait();
-        await updateNekoBalance();
-        alert("🎴 가챠 성공! 카드가 추가되었습니다.");
-    } catch (error) {
-        console.error(error);
-        alert("가챠 오류 발생");
-    }
+.title {
+    font-size: 2.5em;
+    text-shadow: 0 0 10px cyan;
 }
 
-document.getElementById("connectWallet").addEventListener("click", connectWallet);
-document.getElementById("drawCard").addEventListener("click", drawCard);
+.sub-text {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+button {
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ff00ff;
+    transition: 0.3s;
+    margin: 10px;
+}
+
+button:hover {
+    box-shadow: 0 0 20px #00ffff;
+}
+
+.game-container {
+    margin: 20px 0;
+}
+
+#neon-cat {
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#score {
+    font-size: 20px;
+    margin: 10px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#gacha-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    background: #ff00ff;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+#cardDisplay {
+    margin-top: 10px;
+}
+
+.card {
+    display: inline-block;
+    width: 120px;
+    height: 180px;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #00ffcc;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin: 5px;
+}
+
+#sound-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #00ffcc;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-shadow: 0 0 5px cyan;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+#sound-btn:hover {
+    background: #00ffaa;
+}
+
+audio {
+    display: none;
+}
