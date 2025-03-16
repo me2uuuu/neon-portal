@@ -1,0 +1,7 @@
+{
+    "name": "Cyber Warrior",
+    "description": "A common card with power 10",
+    "image": "https://me2uuuu.github.io/neon-portal/images/cyber-cat.png",
+    "rarity": "Common",
+    "power": 10
+}
