@@ -32,4 +32,3 @@ soundBtn.addEventListener("click", function() {
     bgm.play();
     soundBtn.style.display = "none"; // 버튼 숨기기
 });
-
