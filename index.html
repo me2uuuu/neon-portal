@@ -7,11 +7,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+
+    <!-- 배경 음악 -->
+    <audio id="bgm" loop>
+        <source src="audio/neon_singularity_bgm.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- 포탈 컨테이너 -->
+    <div class="portal-container">
         <h1 class="title">🔮 NEON PORTAL</h1>
         <p class="sub-text">포탈을 통해 네온 차원으로 진입하십시오.</p>
-        <button onclick="location.href='game.html'">🐱 게임 시작</button>
-        <button onclick="location.href='gacha.html'">🎴 가챠 돌리기</button>
+        
+        <!-- 지갑 연결 -->
+        <button id="connectWallet">🦊 MetaMask 연결</button>
+        <p id="nekoBalance">💰 NEKO 코인: 연결 필요</p>
+        
+        <!-- 네온 고양이 게임 -->
+        <div class="game-container">
+            <p id="score">점수: 0</p>
+            <img id="neon-cat" src="neoncat.GIF" onclick="clickCat()">
+        </div>
+        
+        <!-- 가챠 시스템 -->
+        <button id="gacha-btn" onclick="drawCard()">🎴 가챠 돌리기 (10 NEKO)</button>
+        <div id="cardDisplay"></div>
+        
+        <!-- 사운드 컨트롤 -->
+        <button id="sound-btn">🔊 사운드 ON</button>
     </div>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
