@@ -11,12 +11,12 @@ body {
 
 /* 페이지별 배경 */
 .game-background {
-    background: url('https://me2uuuu.github.io/neon-portal/neoncat.GIF') no-repeat center center fixed;
+    background: url('images/neoncat.GIF') no-repeat center center fixed;
     background-size: cover;
 }
 
 .gacha-background {
-    background: url('https://me2uuuu.github.io/neon-portal/gifFile%206.GIF') no-repeat center center fixed;
+    background: url('docs/gifFile6.GIF') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -37,11 +37,6 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    font-size: 1.8em;
-    text-shadow: 0 0 10px cyan;
-}
-
 .card-container {
     display: flex;
     justify-content: center;
@@ -60,22 +55,4 @@ h1 {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-#sound-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #00ffcc;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 0 10px cyan;
-}
-
-#sound-btn:hover {
-    background: #00ffaa;
 }
