@@ -68,7 +68,6 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    position: relative; /* 카드 위치를 고정하기 위해 */
 }
 
 /* Card style */
@@ -87,8 +86,7 @@ h1 {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     animation: float 3s ease-in-out infinite;
-    position: absolute; /* 절대 위치로 고정 */
-    transform-origin: center; /* 확대 시 중앙 기준 */
+    position: relative; /* 반짝임 효과를 위해 */
 }
 
 .card:hover {
@@ -124,9 +122,9 @@ h1 {
 
 /* Card float animation */
 @keyframes float {
-    0% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-15px) scale(1); }
-    100% { transform: translateY(0) scale(1); }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
 }
 
 /* Sound button */
