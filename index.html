@@ -1,86 +1,20 @@
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEON PORTAL</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #0ff;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%205.GIF') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #0ff;
-        }
-        .title {
-            font-size: 2.5em;
-            text-shadow: 0 0 10px #0ff;
-        }
-        .sub-text {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        #portal-btn {
-            background: rgba(255, 0, 255, 0.6);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            font-size: 0.8em;
-            border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 0 0 6px #ff00ff;
-            margin-top: 5px;
-            transition: transform 0.3s;
-        }
-        #portal-btn:hover {
-            background: #ff33ff;
-        }
-        #portal-btn:active {
-            transform: scale(1.2);
-        }
-        .portal-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent);
-            opacity: 0;
-            animation: portalOpen 1s forwards;
-            pointer-events: none;
-        }
-        @keyframes portalOpen {
-            0% { opacity: 0; transform: scale(0); }
-            100% { opacity: 1; transform: scale(2); }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">NEON PORTAL</h1>
-        <p class="sub-text">포탈을 통해 네온 차원으로 진입하십시오.</p>
+        <h1 class="title">🔮 NEON PORTAL</h1>
+        <p class="sub-text">네온 차원으로 들어갈 준비가 되셨나요?</p>
         <button id="portal-btn">🚀 포탈 열기 🚀</button>
     </div>
     <script>
         document.getElementById('portal-btn').addEventListener('click', function() {
-            const effect = document.createElement('div');
-            effect.className = 'portal-effect';
-            document.body.appendChild(effect);
-            setTimeout(() => {
-                window.location.href = "game.html";
-            }, 1000); // 애니메이션 후 이동
+            window.location.href = "game.html";
         });
     </script>
 </body>
