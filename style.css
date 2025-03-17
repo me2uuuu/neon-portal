@@ -5,7 +5,7 @@ body {
     padding: 0;
     background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
     background-size: cover;
-    background-color: black; /* GIF 로드 전 배경색 */
+    background-color: black;
     overflow: hidden;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
@@ -13,7 +13,7 @@ body {
     position: relative;
 }
 
-body::after { /* 네온 오버레이 효과 */
+body::after {
     content: '';
     position: absolute;
     top: 0;
@@ -47,7 +47,7 @@ body::after { /* 네온 오버레이 효과 */
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    z-index: 1; /* 오버레이 위에 표시 */
+    z-index: 1;
 }
 
 h1 {
@@ -86,6 +86,7 @@ h1 {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     animation: float 3s ease-in-out infinite;
+    position: relative; /* 배경 효과를 위한 설정 */
 }
 
 .card:hover {
@@ -93,8 +94,19 @@ h1 {
     box-shadow: 0 0 30px rgba(255, 0, 255, 1);
 }
 
-.card:active {
-    box-shadow: 0 0 40px #ff00ff, 0 0 60px #00ffcc;
+.card.clicked::after { /* 클릭 시 배경 효과 */
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.5), transparent);
+    animation: flash 0.5s ease-out;
+    z-index: -1;
+}
+
+@keyframes flash {
+    0% { opacity: 1; transform: scale(0); }
+    100% { opacity: 0; transform: scale(1.5); }
 }
 
 /* Card image style */
