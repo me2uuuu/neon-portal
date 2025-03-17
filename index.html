@@ -1,62 +1,130 @@
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Neon Chase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #0ff;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%205.GIF') no-repeat center center fixed;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
             background-size: cover;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: cyan;
         }
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #0ff;
+        #neon-cat {
+            position: absolute;
+            width: 150px;
+            cursor: pointer;
+            transition: all 0.3s;
+            left: 0;
+            top: 0;
         }
-        .title {
-            font-size: 2.5em;
-            text-shadow: 0 0 10px #0ff;
+        #score {
+            font-size: 20px;
+            margin: 10px;
+            text-shadow: 2px 2px 4px #000;
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
-        .sub-text {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        #portal-btn {
-            background: rgba(255, 0, 255, 0.6);
+        #gacha-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #ff00ff;
             color: white;
             border: none;
-            padding: 6px 12px;
-            font-size: 0.8em;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 0 6px #ff00ff;
-            margin-top: 5px;
+            text-shadow: 0 0 10px white;
+            box-shadow: 0 0 10px #ff00ff;
+            z-index: 1000;
         }
-        #portal-btn:hover {
+        #gacha-btn:hover {
             background: #ff33ff;
+        }
+        .difficulty-btn {
+            position: fixed;
+            top: 10px;
+            padding: 5px 10px;
+            margin: 0 5px;
+            background: rgba(0, 255, 255, 0.6);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            text-shadow: 0 0 5px cyan;
+        }
+        .difficulty-btn:hover {
+            background: #00ffff;
+        }
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">NEON PORTAL</h1>
-        <p class="sub-text">포탈을 통해 네온 차원으로 진입하십시오.</p>
-        <button id="portal-btn">🚀 포탈 열기 🚀</button>
-    </div>
+    <p id="score">점수: 0</p>
+    <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()">
+    
+    <audio id="bgm" loop>
+        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_singularity_bgm.mp3" type="audio/mp3">
+    </audio>
+
+    <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
+    <button class="difficulty-btn" onclick="setDifficulty(3000)" style="right: 120px;">쉬움</button>
+    <button class="difficulty-btn" onclick="setDifficulty(2000)" style="right: 60px;">보통</button>
+    <button class="difficulty-btn" onclick="setDifficulty(1000)" style="right: 0;">어려움</button>
+
     <script>
-        document.getElementById('portal-btn').addEventListener('click', function() {
-            window.location.href = "game.html"; // 바로 게임 페이지로 이동
+        let score = 0;
+        let intervalId = null;
+        const cat = document.getElementById("neon-cat");
+        const scoreDisplay = document.getElementById("score");
+        const bgm = document.getElementById("bgm");
+
+        function moveCat() {
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 150;
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            cat.style.left = newX + "px";
+            cat.style.top = newY + "px";
+
+            const rotate = Math.random() * 360;
+            const scale = 0.7 + Math.random() * 0.6;
+            cat.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+        }
+
+        function clickCat() {
+            score++;
+            scoreDisplay.innerHTML = "점수: " + score;
+            moveCat();
+            if (score === 1) {
+                bgm.play().catch(err => console.log("Autoplay blocked:", err));
+            }
+        }
+
+        function goToGacha() {
+            window.location.href = "gacha.html";
+        }
+
+        function setDifficulty(speed) {
+            if (intervalId) clearInterval(intervalId);
+            intervalId = setInterval(moveCat, speed);
+        }
+
+        window.addEventListener("load", () => {
+            moveCat();
+            setDifficulty(2000); // 기본 난이도: 보통
         });
     </script>
 </body>
