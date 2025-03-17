@@ -5,16 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEON PORTAL</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #0ff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0ff;
+        }
+        .title {
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #0ff;
+        }
+        .sub-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        #portal-btn {
+            background: rgba(255, 0, 255, 0.6);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.8em;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 6px #ff00ff;
+            margin-top: 5px;
+        }
+        #portal-btn:hover {
+            background: #ff33ff;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">🔮 NEON PORTAL</h1>
-        <p class="sub-text">네온 차원으로 들어갈 준비가 되셨나요?</p>
+        <h1 class="title">NEON PORTAL</h1>
+        <p class="sub-text">포탈을 통해 네온 차원으로 진입하십시오.</p>
         <button id="portal-btn">🚀 포탈 열기 🚀</button>
     </div>
+
     <script>
         document.getElementById('portal-btn').addEventListener('click', function() {
-            window.location.href = "game.html";
+            window.location.href = "game.html"; // 바로 게임 페이지로 이동
         });
     </script>
 </body>
