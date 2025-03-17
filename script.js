@@ -10,18 +10,18 @@ const cardImages = [
 let score = 0;
 const scoreDisplay = document.getElementById("score");
 
+// 초기 텍스트 설정
 document.querySelectorAll(".card").forEach(card => {
-    card.innerHTML = "✨ Gacha Card ✨"; // 초기 텍스트 설정
+    card.innerHTML = "✨ Gacha Card ✨";
+});
+
+document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", function() {
         const randomIndex = Math.floor(Math.random() * cardImages.length);
         const selectedCard = cardImages[randomIndex];
 
         this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card"><p>${selectedCard.rarity}</p>`;
         this.style.color = selectedCard.rarity === "SSR" ? "#ff00ff" : selectedCard.rarity === "SR" ? "#00ffcc" : "#ffffff";
-
-        // 클릭 효과
-        this.classList.add("clicked");
-        setTimeout(() => this.classList.remove("clicked"), 500);
 
         score += selectedCard.points;
         scoreDisplay.innerHTML = `점수: ${score}`;
