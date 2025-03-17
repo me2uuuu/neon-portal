@@ -13,24 +13,6 @@ body {
     position: relative;
 }
 
-body::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
-    pointer-events: none;
-    animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 .container {
     position: absolute;
     top: 50%;
@@ -39,27 +21,20 @@ body::after {
     width: 400px;
     height: 500px;
     background: rgba(0, 0, 0, 0.8);
-    border: 3px solid #00ffcc;
+    border: 2px solid #00ffcc;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 1), 0 0 40px rgba(255, 0, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    z-index: 1;
 }
 
 h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-shadow: 0 0 15px cyan, 0 0 30px #ff00ff;
-    animation: glow 2s ease-in-out infinite;
-}
-
-@keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px cyan; }
-    50% { text-shadow: 0 0 20px cyan, 0 0 40px #ff00ff; }
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px cyan;
 }
 
 /* Card container */
@@ -67,49 +42,24 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 /* Card style */
 .card {
     width: 120px;
     height: 180px;
-    border: 3px solid #00ffcc;
-    border-radius: 12px;
-    background: rgba(0, 255, 204, 0.3);
-    box-shadow: 0 0 20px rgba(0, 255, 204, 1);
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2em;
     color: #00ffcc;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: float 3s ease-in-out infinite;
-    position: relative; /* 반짝임 효과를 위해 */
-}
-
-.card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(255, 0, 255, 1);
-}
-
-.card.clicked::after {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.5), transparent);
-    animation: flash 0.5s ease-out;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes flash {
-    0% { opacity: 1; transform: translate(-50%, -50%) scale(0); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+    transition: none; /* 애니메이션 제거 */
 }
 
 /* Card image style */
@@ -117,14 +67,7 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Card float animation */
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
+    border-radius: 8px;
 }
 
 /* Sound button */
@@ -132,35 +75,27 @@ h1 {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    padding: 12px 24px;
-    font-size: 18px;
-    background: linear-gradient(45deg, #00ffcc, #ff00ff);
-    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #00ffcc;
+    color: black;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    text-shadow: 0 0 10px #fff;
-    box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
-    transition: transform 0.2s;
+    text-shadow: 0 0 5px cyan;
+    box-shadow: 0 0 10px #00ffcc;
 }
 
 #sound-btn:hover {
-    transform: scale(1.1);
-    background: linear-gradient(45deg, #ff00ff, #00ffcc);
+    background: #00ffaa;
 }
 
 /* Score display */
 #score {
-    margin-top: 15px;
-    font-size: 1.5em;
-    color: #ff0;
-    text-shadow: 0 0 15px #ff0, 0 0 30px #ff00ff;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: yellow;
+    text-shadow: 0 0 10px yellow;
 }
 
 /* Background music hidden */
