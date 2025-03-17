@@ -80,13 +80,15 @@
     </audio>
 
     <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
-    <button class="difficulty-btn" onclick="setDifficulty(3000)" style="right: 120px;">쉬움</button>
-    <button class="difficulty-btn" onclick="setDifficulty(2000)" style="right: 60px;">보통</button>
-    <button class="difficulty-btn" onclick="setDifficulty(1000)" style="right: 0;">어려움</button>
+    <button class="difficulty-btn" onclick="setDifficulty(3000)" style="right: 240px;">쉬움</button>
+    <button class="difficulty-btn" onclick="setDifficulty(2000)" style="right: 180px;">보통</button>
+    <button class="difficulty-btn" onclick="setDifficulty(1000)" style="right: 120px;">어려움</button>
+    <button class="difficulty-btn" onclick="setDifficulty(500)" style="right: 60px;">매우 어려움</button>
 
     <script>
         let score = 0;
         let intervalId = null;
+        let currentSpeed = 2000;
         const cat = document.getElementById("neon-cat");
         const scoreDisplay = document.getElementById("score");
         const bgm = document.getElementById("bgm");
@@ -105,7 +107,8 @@
         }
 
         function clickCat() {
-            score++;
+            const bonus = currentSpeed === 1000 ? 2 : currentSpeed === 500 ? 3 : 1;
+            score += bonus;
             scoreDisplay.innerHTML = "점수: " + score;
             moveCat();
             if (score === 1) {
@@ -120,11 +123,14 @@
         function setDifficulty(speed) {
             if (intervalId) clearInterval(intervalId);
             intervalId = setInterval(moveCat, speed);
+            currentSpeed = speed;
+            const transitionSpeed = speed / 2000;
+            cat.style.transition = `all ${transitionSpeed}s`;
         }
 
         window.addEventListener("load", () => {
             moveCat();
-            setDifficulty(2000); // 기본 난이도: 보통
+            setDifficulty(2000); // 기본: 보통
         });
     </script>
 </body>
