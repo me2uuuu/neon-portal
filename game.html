@@ -51,19 +51,27 @@
         #gacha-btn:hover {
             background: #ff33ff;
         }
-        .difficulty-btn {
+        .difficulty-container {
             position: fixed;
             top: 10px;
-            padding: 5px 10px;
-            margin: 0 5px;
-            background: rgba(0, 255, 255, 0.6);
-            border: none;
-            border-radius: 5px;
+            right: 10px;
+            display: flex;
+            gap: 10px; /* 버튼 간격 */
+        }
+        .difficulty-btn {
+            padding: 6px 12px;
+            background: rgba(0, 255, 255, 0.7);
+            border: 2px solid #00ffcc;
+            border-radius: 6px;
             color: white;
             cursor: pointer;
             text-shadow: 0 0 5px cyan;
+            box-shadow: 0 0 10px #00ffcc;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .difficulty-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ff00ff;
             background: #00ffff;
         }
         audio {
@@ -80,10 +88,12 @@
     </audio>
 
     <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
-    <button class="difficulty-btn" onclick="setDifficulty(3000)" style="right: 240px;">쉬움</button>
-    <button class="difficulty-btn" onclick="setDifficulty(2000)" style="right: 180px;">보통</button>
-    <button class="difficulty-btn" onclick="setDifficulty(1000)" style="right: 120px;">어려움</button>
-    <button class="difficulty-btn" onclick="setDifficulty(500)" style="right: 60px;">매우 어려움</button>
+    <div class="difficulty-container">
+        <button class="difficulty-btn" onclick="setDifficulty(3000)">쉬움</button>
+        <button class="difficulty-btn" onclick="setDifficulty(2000)">보통</button>
+        <button class="difficulty-btn" onclick="setDifficulty(1000)">어려움</button>
+        <button class="difficulty-btn" onclick="setDifficulty(500)">매우 어려움</button>
+    </div>
 
     <script>
         let score = 0;
