@@ -1,36 +1,113 @@
-const cardImages = [
-    { img: "./fire-cat.png", points: 100 },
-    { img: "./wind-cat.png", points: 80 },
-    { img: "./ice-cat.png", points: 60 },
-    { img: "./dark-neon-cat.png", points: 50 },
-    { img: "./thunder-cat.png", points: 70 },
-    { img: "./cyber-cat.png", points: 90 }
-];
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-let score = 0;
-const scoreDisplay = document.getElementById("score");
+body {
+    margin: 0;
+    padding: 0;
+    background: url('gif_file_6.GIF') no-repeat center center fixed;
+    background-size: cover;
+    background-color: black;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: cyan;
+}
 
-// 카드 클릭 이벤트 (이미지 정상 로딩 후에도 작동)
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", function() {
-        const randomIndex = Math.floor(Math.random() * cardImages.length);
-        const selectedCard = cardImages[randomIndex];
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
 
-        this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card">`;
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px cyan;
+}
 
-        // 점수 업데이트
-        score += selectedCard.points;
-        scoreDisplay.innerText = `점수: ${score}`;
-    });
-});
+/* 카드 컨테이너 */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
 
-// 사운드 ON 버튼 기능 추가
-const bgm = document.getElementById("bgm");
-const soundBtn = document.getElementById("sound-btn");
+/* 카드 스타일 */
+.card {
+    width: 120px;
+    height: 180px;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #00ffcc;
+    cursor: pointer;
+    transition: transform 0.3s;
+    animation: float 3s ease-in-out infinite;
+}
 
-soundBtn.addEventListener("click", function() {
-    bgm.play();
-    soundBtn.style.display = "none"; // 버튼 숨기기
-});
+/* 카드 이미지 스타일 */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 카드 부유 애니메이션 */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* 사운드 버튼 */
+#sound-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #00ffcc;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-shadow: 0 0 5px cyan;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+#sound-btn:hover {
+    background: #00ffaa;
+}
+
+/* 점수 표시 */
+#score {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: yellow;
+    text-shadow: 0 0 10px yellow;
+}
+
+/* 배경 음악 숨김 */
+audio {
+    display: none;
+}
 
 
