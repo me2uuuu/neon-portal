@@ -8,44 +8,14 @@
 </head>
 <body class="game-background">
     <p id="score">점수: 0</p>
-    <img id="neon-cat" src="https://me2uuuu.github.io/neon-portal/neoncat.GIF" onclick="clickCat()">
+    <img id="neon-cat" src="images/neoncat.GIF" onclick="clickCat()">
 
     <audio autoplay loop>
-        <source src="https://me2uuuu.github.io/neon-portal/audio/neon_singularity_bgm.mp3" type="audio/mp3">
+        <source src="audio/neon_singularity_bgm.mp3" type="audio/mp3">
     </audio>
 
     <button id="gacha-btn" onclick="goToGacha()">카드 뽑기</button>
 
-    <script>
-        let score = 0;
-        const cat = document.getElementById("neon-cat");
-        const scoreDisplay = document.getElementById("score");
-
-        function moveCat() {
-            const maxX = window.innerWidth - 150;
-            const maxY = window.innerHeight - 150;
-            const newX = Math.floor(Math.random() * maxX);
-            const newY = Math.floor(Math.random() * maxY);
-            cat.style.left = newX + "px";
-            cat.style.top = newY + "px";
-
-            const rotate = Math.random() * 360;
-            const scale = 0.7 + Math.random() * 0.6;
-            cat.style.transform = `rotate(${rotate}deg) scale(${scale})`;
-        }
-
-        function clickCat() {
-            score++;
-            scoreDisplay.innerHTML = "점수: " + score;
-            moveCat();
-        }
-
-        function goToGacha() {
-            window.location.href = "gacha.html";
-        }
-
-        moveCat();
-        setInterval(moveCat, 2000);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
