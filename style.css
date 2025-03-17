@@ -3,21 +3,13 @@
 body {
     margin: 0;
     padding: 0;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
+    background-size: cover;
+    background-color: black;
     overflow: hidden;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
     color: cyan;
-}
-
-/* 페이지별 배경 */
-.game-background {
-    background: url('images/neoncat.GIF') no-repeat center center fixed;
-    background-size: cover;
-}
-
-.gacha-background {
-    background: url('docs/gifFile6.GIF') no-repeat center center fixed;
-    background-size: cover;
 }
 
 .container {
@@ -30,13 +22,21 @@ body {
     background: rgba(0, 0, 0, 0.7);
     border: 2px solid #00ffcc;
     border-radius: 15px;
-    box-shadow: 0 0 15px cyan;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
 }
 
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px cyan;
+}
+
+/* Card container */
 .card-container {
     display: flex;
     justify-content: center;
@@ -44,15 +44,68 @@ body {
     gap: 15px;
 }
 
+/* Card style */
 .card {
     width: 120px;
     height: 180px;
     border: 2px solid cyan;
+    border-radius: 10px;
     background: rgba(0, 255, 204, 0.2);
-    box-shadow: 0 0 15px cyan;
-    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.2em;
+    color: #00ffcc;
     cursor: pointer;
+    transition: transform 0.3s;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Card image style */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Card float animation */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Sound button */
+#sound-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #00ffcc;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-shadow: 0 0 5px cyan;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+#sound-btn:hover {
+    background: #00ffaa;
+}
+
+/* Score display */
+#score {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: yellow;
+    text-shadow: 0 0 10px yellow;
+}
+
+/* Background music hidden */
+audio {
+    display: none;
 }
