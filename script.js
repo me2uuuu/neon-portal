@@ -18,6 +18,10 @@ document.querySelectorAll(".card").forEach(card => {
         this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card"><p>${selectedCard.rarity}</p>`;
         this.style.color = selectedCard.rarity === "SSR" ? "#ff00ff" : selectedCard.rarity === "SR" ? "#00ffcc" : "#ffffff";
 
+        // 배경 효과 트리거
+        this.classList.add("clicked");
+        setTimeout(() => this.classList.remove("clicked"), 500); // 애니메이션 시간과 맞춤
+
         score += selectedCard.points;
         scoreDisplay.innerHTML = `점수: ${score}`;
     });
