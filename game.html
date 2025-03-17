@@ -1,24 +1,110 @@
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL GACHA</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Neon Chase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: cyan;
+        }
+        #neon-cat {
+            position: absolute;
+            width: 150px;
+            cursor: pointer;
+            transition: all 0.3s;
+            left: 0; /* 초기 위치 설정 */
+            top: 0;
+        }
+        #score {
+            font-size: 20px;
+            margin: 10px;
+            text-shadow: 2px 2px 4px #000;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        #gacha-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #ff00ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-shadow: 0 0 10px white;
+            box-shadow: 0 0 10px #ff00ff;
+            z-index: 1000;
+            display: block;
+        }
+        #gacha-btn:hover {
+            background: #ff33ff;
+        }
+        audio {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <p id="score">점수: 0</p>
+    <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()">
+    
     <audio id="bgm" loop>
-        <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_singularity_bgm.mp3" type="audio/mp3">
     </audio>
-    <button id="sound-btn">🔊 사운드 ON</button>
-    <div class="container">
-        <h1>네온 포탈 가챠</h1>
-        <div class="card-container">
-            <div class="card" id="card1">✨ Gacha Card ✨</div>
-            <div class="card" id="card2">✨ Gacha Card ✨</div>
-            <div class="card" id="card3">✨ Gacha Card ✨</div>
-        </div>
-        <p id="score">점수: 0</p>
-    </div>
-    <script src="script.js"></script>
+
+    <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
+
+    <script>
+        let score = 0;
+        const cat = document.getElementById("neon-cat");
+        const scoreDisplay = document.getElementById("score");
+        const bgm = document.getElementById("bgm");
+
+        function moveCat() {
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 150;
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            cat.style.left = newX + "px";
+            cat.style.top = newY + "px";
+
+            const rotate = Math.random() * 360;
+            const scale = 0.7 + Math.random() * 0.6;
+            cat.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+        }
+
+        function clickCat() {
+            score++;
+            scoreDisplay.innerHTML = "점수: " + score;
+            moveCat();
+            // 오디오 재생 트리거 (최초 사용자 상호작용 시)
+            if (score === 1) {
+                bgm.play().catch(err => console.log("Autoplay blocked:", err));
+            }
+        }
+
+        function goToGacha() {
+            window.location.href = "gacha.html";
+        }
+
+        // 페이지 로드 시 초기화
+        window.addEventListener("load", () => {
+            moveCat();
+            setInterval(moveCat, 2000);
+        });
+    </script>
 </body>
 </html>
