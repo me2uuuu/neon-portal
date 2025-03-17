@@ -10,7 +10,7 @@ const cardImages = [
 let score = 0;
 const scoreDisplay = document.getElementById("score");
 
-document.querySelectorAll(".card").forEach(card => {
+document.querySelectorAll(".card").forEach((card, index) => {
     card.addEventListener("click", function() {
         const randomIndex = Math.floor(Math.random() * cardImages.length);
         const selectedCard = cardImages[randomIndex];
@@ -18,13 +18,29 @@ document.querySelectorAll(".card").forEach(card => {
         this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card"><p>${selectedCard.rarity}</p>`;
         this.style.color = selectedCard.rarity === "SSR" ? "#ff00ff" : selectedCard.rarity === "SR" ? "#00ffcc" : "#ffffff";
 
-        // 배경 효과 트리거
+        // 클릭 효과
         this.classList.add("clicked");
-        setTimeout(() => this.classList.remove("clicked"), 500); // 애니메이션 시간과 맞춤
+        setTimeout(() => this.classList.remove("clicked"), 500);
+
+        // 위치 고정
+        const containerWidth = document.querySelector('.card-container').offsetWidth;
+        const cardWidth = this.offsetWidth;
+        const gap = 20; // .card-container의 gap 값
+        const totalCards = 3;
+        const startX = (containerWidth - (cardWidth * totalCards + gap * (totalCards - 1))) / 2;
+        this.style.left = `${startX + index * (cardWidth + gap)}px`;
 
         score += selectedCard.points;
         scoreDisplay.innerHTML = `점수: ${score}`;
     });
+
+    // 초기 위치 설정
+    const containerWidth = document.querySelector('.card-container').offsetWidth;
+    const cardWidth = card.offsetWidth;
+    const gap = 20;
+    const totalCards = 3;
+    const startX = (containerWidth - (cardWidth * totalCards + gap * (totalCards - 1))) / 2;
+    card.style.left = `${startX + index * (cardWidth + gap)}px`;
 });
 
 const bgm = document.getElementById("bgm");
