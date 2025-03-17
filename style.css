@@ -3,13 +3,26 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(45deg, #0ff, #f0f, #0ff, #f0f); /* 네온 그라데이션 */
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
+    background-size: cover;
+    background-color: black; /* GIF 로드 전 배경색 */
     overflow: hidden;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
     color: cyan;
+    position: relative;
+}
+
+body::after { /* 네온 오버레이 효과 */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+    pointer-events: none;
+    animation: gradientBG 15s ease infinite;
 }
 
 @keyframes gradientBG {
@@ -34,6 +47,7 @@ body {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    z-index: 1; /* 오버레이 위에 표시 */
 }
 
 h1 {
