@@ -21,7 +21,7 @@
             width: 150px;
             cursor: pointer;
             transition: all 0.3s;
-            left: 0; /* 초기 위치 설정 */
+            left: 0;
             top: 0;
         }
         #score {
@@ -47,10 +47,24 @@
             text-shadow: 0 0 10px white;
             box-shadow: 0 0 10px #ff00ff;
             z-index: 1000;
-            display: block;
         }
         #gacha-btn:hover {
             background: #ff33ff;
+        }
+        .difficulty-btn {
+            position: fixed;
+            top: 10px;
+            padding: 5px 10px;
+            margin: 0 5px;
+            background: rgba(0, 255, 255, 0.6);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            text-shadow: 0 0 5px cyan;
+        }
+        .difficulty-btn:hover {
+            background: #00ffff;
         }
         audio {
             display: none;
@@ -66,9 +80,13 @@
     </audio>
 
     <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
+    <button class="difficulty-btn" onclick="setDifficulty(3000)" style="right: 120px;">쉬움</button>
+    <button class="difficulty-btn" onclick="setDifficulty(2000)" style="right: 60px;">보통</button>
+    <button class="difficulty-btn" onclick="setDifficulty(1000)" style="right: 0;">어려움</button>
 
     <script>
         let score = 0;
+        let intervalId = null;
         const cat = document.getElementById("neon-cat");
         const scoreDisplay = document.getElementById("score");
         const bgm = document.getElementById("bgm");
@@ -90,7 +108,6 @@
             score++;
             scoreDisplay.innerHTML = "점수: " + score;
             moveCat();
-            // 오디오 재생 트리거 (최초 사용자 상호작용 시)
             if (score === 1) {
                 bgm.play().catch(err => console.log("Autoplay blocked:", err));
             }
@@ -100,10 +117,14 @@
             window.location.href = "gacha.html";
         }
 
-        // 페이지 로드 시 초기화
+        function setDifficulty(speed) {
+            if (intervalId) clearInterval(intervalId);
+            intervalId = setInterval(moveCat, speed);
+        }
+
         window.addEventListener("load", () => {
             moveCat();
-            setInterval(moveCat, 2000);
+            setDifficulty(2000); // 기본 난이도: 보통
         });
     </script>
 </body>
