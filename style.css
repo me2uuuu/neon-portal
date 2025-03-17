@@ -3,17 +3,36 @@
 body {
     margin: 0;
     padding: 0;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
     color: cyan;
-    background: url('img/gifFile6.GIF') no-repeat center center fixed;
-    background-size: cover;
-    transition: background 0.5s;
 }
 
-/* SSR 연출 */
-.ssr-effect {
-    background: radial-gradient(circle, rgba(255,0,255,0.3) 10%, rgba(0,0,0,1) 90%);
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px cyan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .card {
@@ -21,16 +40,10 @@ body {
     height: 180px;
     border: 2px solid cyan;
     border-radius: 10px;
-    box-shadow: 0 0 15px cyan;
+    background: rgba(0, 255, 204, 0.2);
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2em;
-    transition: transform 0.5s;
-}
-
-#gacha-btn {
-    padding: 10px;
-    background: #ff00ff;
-    box-shadow: 0 0 10px #ff00ff;
+    cursor: pointer;
 }
