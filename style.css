@@ -68,6 +68,7 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    position: relative; /* 카드 위치를 고정하기 위해 */
 }
 
 /* Card style */
@@ -86,7 +87,8 @@ h1 {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     animation: float 3s ease-in-out infinite;
-    position: relative; /* 배경 효과를 위한 설정 */
+    position: absolute; /* 절대 위치로 고정 */
+    transform-origin: center; /* 확대 시 중앙 기준 */
 }
 
 .card:hover {
@@ -94,7 +96,7 @@ h1 {
     box-shadow: 0 0 30px rgba(255, 0, 255, 1);
 }
 
-.card.clicked::after { /* 클릭 시 배경 효과 */
+.card.clicked::after {
     content: '';
     position: absolute;
     width: 150%;
@@ -102,11 +104,14 @@ h1 {
     background: radial-gradient(circle, rgba(0, 255, 255, 0.5), transparent);
     animation: flash 0.5s ease-out;
     z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes flash {
-    0% { opacity: 1; transform: scale(0); }
-    100% { opacity: 0; transform: scale(1.5); }
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
 }
 
 /* Card image style */
@@ -119,9 +124,9 @@ h1 {
 
 /* Card float animation */
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1); }
+    100% { transform: translateY(0) scale(1); }
 }
 
 /* Sound button */
