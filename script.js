@@ -1,64 +1,65 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const cardImages = [
-        { img: "fire-cat.png", points: 100, rarity: "SSR" },
-        { img: "wind-cat.png", points: 80, rarity: "SR" },
-        { img: "ice-cat.png", points: 60, rarity: "R" },
-        { img: "dark-neon-cat.png", points: 50, rarity: "R" },
-        { img: "thunder-cat.png", points: 70, rarity: "SR" },
-        { img: "cyber-cat.png", points: 90, rarity: "SSR" }
-    ];
+// NEKO 코인 시스템
+let nekoCoins = 100;
+let score = 0;
 
-    let nekoCoins = parseInt(localStorage.getItem("nekoCoins")) || 100;
-    const coinDisplay = document.getElementById("neko-coin");
-    const soundEffect = document.getElementById("click-sound");
+document.getElementById("coinValue").innerText = nekoCoins;
+document.getElementById("scoreValue").innerText = score;
 
-    coinDisplay.innerHTML = `🪙 NEKO 코인: ${nekoCoins}`;
+const cardPool = [
+    { name: "Cyber Warrior", rarity: "Common", power: 10, img: "fire-cat.png" },
+    { name: "Neon Assassin", rarity: "Common", power: 12, img: "wind-cat.png" },
+    { name: "AI Hacker", rarity: "Rare", power: 20, img: "ice-cat.png" },
+    { name: "Quantum Sorcerer", rarity: "Rare", power: 22, img: "dark-neon-cat.png" },
+    { name: "Glitch Phantom", rarity: "SSR", power: 35, img: "thunder-cat.png" },
+    { name: "Neon Overlord", rarity: "SSR", power: 50, img: "cyber-cat.png" }
+];
 
-    document.querySelectorAll(".card").forEach(card => {
-        card.innerHTML = "✨ Gacha Card ✨"; // 초기 텍스트 설정
-
-        card.addEventListener("click", function () {
-            if (nekoCoins < 10) {
-                alert("❌ NEKO 코인이 부족합니다!");
-                return;
-            }
-
-            // 코인 차감 및 저장
-            nekoCoins -= 10;
-            coinDisplay.innerHTML = `🪙 NEKO 코인: ${nekoCoins}`;
-            localStorage.setItem("nekoCoins", nekoCoins);
-
-            // 랜덤 카드 뽑기
-            const randomIndex = Math.floor(Math.random() * cardImages.length);
-            const selectedCard = cardImages[randomIndex];
-
-            this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card"><p>${selectedCard.rarity}</p>`;
-            this.style.color = selectedCard.rarity === "SSR" ? "#ff00ff" : selectedCard.rarity === "SR" ? "#00ffcc" : "#ffffff";
-
-            // 카드 애니메이션 (클릭 효과)
-            this.style.transform = "scale(1.1)";
-            setTimeout(() => this.style.transform = "scale(1)", 300);
-
-            // 효과음 재생
-            if (soundEffect) {
-                soundEffect.play();
-            }
-        });
-    });
-
-    // 배경음악 제어
-    const bgm = document.getElementById("bgm");
-    const soundBtn = document.getElementById("sound-btn");
-
-    if (soundBtn && bgm) {
-        soundBtn.addEventListener("click", function () {
-            if (bgm.paused) {
-                bgm.play();
-                soundBtn.innerText = "🔊 사운드 OFF";
-            } else {
-                bgm.pause();
-                soundBtn.innerText = "🔇 사운드 ON";
-            }
-        });
+// 카드 뽑기 기능
+function drawCard() {
+    if (nekoCoins < 10) {
+        alert("❌ NEKO 코인이 부족합니다! 광고를 보거나 게임을 진행하세요.");
+        return;
     }
-});
+
+    nekoCoins -= 10;
+    document.getElementById("coinValue").innerText = nekoCoins;
+
+    const roll = Math.random();
+    let rarity;
+    if (roll < 0.1) {
+        rarity = "SSR";
+    } else if (roll < 0.3) {
+        rarity = "Rare";
+    } else {
+        rarity = "Common";
+    }
+
+    const possibleCards = cardPool.filter(card => card.rarity === rarity);
+    const drawnCard = possibleCards[Math.floor(Math.random() * possibleCards.length)];
+
+    document.getElementById("cardDisplay").innerHTML = `
+        <img src="${drawnCard.img}" alt="${drawnCard.name}" style="width: 120px; height: 160px;">
+        <p>${drawnCard.name} (등급: ${drawnCard.rarity}, Power: ${drawnCard.power})</p>
+    `;
+
+    score += drawnCard.power;
+    document.getElementById("scoreValue").innerText = score;
+
+    if (drawnCard.rarity === "SSR") {
+        nekoCoins += 50;
+        document.getElementById("coinValue").innerText = nekoCoins;
+        alert("🎉 SSR 카드 획득! 보너스 +50 NEKO 코인!");
+    }
+}
+
+// 광고 보기 기능
+function watchAd() {
+    alert("📺 광고를 봤습니다! +20 NEKO 코인 지급!");
+    nekoCoins += 20;
+    document.getElementById("coinValue").innerText = nekoCoins;
+}
+
+// 난이도 설정
+function setDifficulty(level) {
+    alert(`${level} 난이도로 설정됨`);
+}
