@@ -3,36 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Chase</title>
+    <title>NEON GAME</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/game-bg.gif') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: cyan;
+            font-family: 'Orbitron', sans-serif;
+        }
+        #neko-coin {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            color: yellow;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px yellow;
+        }
+        .difficulty-buttons {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+        }
+        .difficulty-buttons button {
+            display: block;
+            margin-bottom: 5px;
+            padding: 10px;
+            font-size: 14px;
+            background: cyan;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<body class="game-background">
-    <p id="score">점수: 0</p>
-    <p id="neko-coins">🪙 NEKO 코인: 100</p>
-    <img id="neon-cat" src="neoncat.GIF" onclick="clickCat()">
+<body>
+    <div id="neko-coin">💰 NEKO 코인: 100</div>
 
-    <audio autoplay loop>
-        <source src="audio/neon_singularity_bgm.mp3" type="audio/mp3">
-    </audio>
-
-    <button id="gacha-btn" onclick="goToGacha()">🎴 가챠 뽑기</button>
+    <div class="difficulty-buttons">
+        <button onclick="setDifficulty('easy')">쉬움</button>
+        <button onclick="setDifficulty('normal')">보통</button>
+        <button onclick="setDifficulty('hard')">어려움</button>
+        <button onclick="setDifficulty('very-hard')">매우 어려움</button>
+    </div>
 
     <script>
-        let score = 0;
-        let nekoCoins = 100;
-        const scoreDisplay = document.getElementById("score");
-        const nekoDisplay = document.getElementById("neko-coins");
-
-        function clickCat() {
-            score++;
-            nekoCoins += 2; // 고양이 클릭 시 2 코인 지급
-            scoreDisplay.innerHTML = `점수: ${score}`;
-            nekoDisplay.innerHTML = `🪙 NEKO 코인: ${nekoCoins}`;
-        }
-
-        function goToGacha() {
-            window.localStorage.setItem("nekoCoins", nekoCoins); // 가챠 페이지로 코인 값 저장
-            window.location.href = "gacha.html";
+        function setDifficulty(level) {
+            alert(level + " 난이도로 설정됨");
         }
     </script>
 </body>
