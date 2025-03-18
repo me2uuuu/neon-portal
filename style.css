@@ -10,12 +10,12 @@ body {
 
 /* 배경 설정 */
 .game-background {
-    background: url('neoncat.GIF') no-repeat center center fixed;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
     background-size: cover;
 }
 
 .gacha-background {
-    background: url('gifFile6.GIF') no-repeat center center fixed;
+    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile6.GIF') no-repeat center center fixed;
     background-size: cover;
 }
 
