@@ -3,31 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL GACHA</title>
+    <title>NEON GACHA</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gacha-bg.gif') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: cyan;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            width: 120px;
+            height: 180px;
+            border: 2px solid cyan;
+            border-radius: 10px;
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #00ffcc;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        #sound-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #00ffcc;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body class="gacha-background">
+<body>
     <audio id="bgm" loop>
         <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
     </audio>
-
     <button id="sound-btn">🔊 사운드 ON</button>
-    <p id="neko-coins">🪙 NEKO 코인: 0</p>
-    
-    <div class="container">
-        <h1>네온 포탈 가챠</h1>
-        <div class="card-container">
-            <div class="card" id="card1">✨ Gacha Card ✨</div>
-            <div class="card" id="card2">✨ Gacha Card ✨</div>
-            <div class="card" id="card3">✨ Gacha Card ✨</div>
-        </div>
-        <p id="score">점수: 0</p>
+
+    <h1>네온 포탈 가챠</h1>
+    <div class="card-container">
+        <div class="card" id="card1">✨ Gacha Card ✨</div>
+        <div class="card" id="card2">✨ Gacha Card ✨</div>
+        <div class="card" id="card3">✨ Gacha Card ✨</div>
     </div>
 
-    <audio id="click-sound">
-        <source src="audio/card_flip.mp3" type="audio/mp3">
-    </audio>
+    <p id="score">점수: 0</p>
 
-    <script src="script.js"></script>
+    <script>
+        const cardImages = [
+            { img: "./fire-cat.png", points: 100, rarity: "SSR" },
+            { img: "./wind-cat.png", points: 80, rarity: "SR" },
+            { img: "./ice-cat.png", points: 60, rarity: "R" },
+            { img: "./dark-neon-cat.png", points: 50, rarity: "R" },
+            { img: "./thunder-cat.png", points: 70, rarity: "SR" },
+            { img: "./cyber-cat.png", points: 90, rarity: "SSR" }
+        ];
+
+        let score = 0;
+        const scoreDisplay = document.getElementById("score");
+
+        document.querySelectorAll(".card").forEach(card => {
+            card.addEventListener("click", function() {
+                const randomIndex = Math.floor(Math.random() * cardImages.length);
+                const selectedCard = cardImages[randomIndex];
+
+                this.innerHTML = `<img src="${selectedCard.img}" alt="Gacha Card"><p>${selectedCard.rarity}</p>`;
+                score += selectedCard.points;
+                scoreDisplay.innerHTML = `점수: ${score}`;
+                new Audio("audio/card_flip.mp3").play();
+            });
+        });
+
+        document.getElementById("sound-btn").addEventListener("click", function() {
+            document.getElementById("bgm").play();
+            this.style.display = "none";
+        });
+    </script>
 </body>
 </html>
