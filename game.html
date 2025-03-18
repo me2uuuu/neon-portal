@@ -3,58 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON GAME</title>
+    <title>NEON PORTAL GAME</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/game-bg.gif') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            color: cyan;
-            font-family: 'Orbitron', sans-serif;
-        }
-        #neko-coin {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 20px;
-            color: yellow;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px yellow;
-        }
-        .difficulty-buttons {
-            position: absolute;
-            top: 50px;
-            right: 20px;
-        }
-        .difficulty-buttons button {
-            display: block;
-            margin-bottom: 5px;
-            padding: 10px;
-            font-size: 14px;
-            background: cyan;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
-    <div id="neko-coin">💰 NEKO 코인: 100</div>
-    <div class="difficulty-buttons">
-        <button onclick="setDifficulty('easy')">쉬움</button>
-        <button onclick="setDifficulty('normal')">보통</button>
-        <button onclick="setDifficulty('hard')">어려움</button>
-        <button onclick="setDifficulty('very-hard')">매우 어려움</button>
+    <div class="container">
+        <h1>네온 포탈 게임</h1>
+        <p id="score">점수: <span id="scoreValue">0</span></p>
+        <p id="nekoCoins">🪙 NEKO 코인: <span id="coinValue">100</span></p>
+
+        <!-- 난이도 버튼 -->
+        <div class="difficulty-buttons">
+            <button onclick="setDifficulty('easy')">쉬움</button>
+            <button onclick="setDifficulty('normal')">보통</button>
+            <button onclick="setDifficulty('hard')">어려움</button>
+            <button onclick="setDifficulty('very-hard')">매우 어려움</button>
+        </div>
+
+        <!-- 카드 뽑기 버튼 -->
+        <button id="gachaButton" onclick="drawCard()">🎴 가챠 뽑기 (-10 NEKO)</button>
+
+        <!-- 광고 보기 버튼 -->
+        <button id="watchAdButton" onclick="watchAd()">📺 광고 보기 (+20 NEKO)</button>
+
+        <!-- 카드 결과 표시 -->
+        <div class="card-container" id="cardDisplay">
+            <p>✨ 여기에 뽑은 카드가 표시됩니다 ✨</p>
+        </div>
     </div>
-    <script>
-        function setDifficulty(level) {
-            alert(level + " 난이도로 설정됨");
-        }
-    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
