@@ -14,7 +14,7 @@ const cardPool = [
     { name: "Neon Overlord", rarity: "SSR", power: 50, img: "cyber-cat.png" }
 ];
 
-// 게임 시작 기능 추가
+// ✅ 게임 실행 기능 추가
 function startGame() {
     document.getElementById("gameArea").innerHTML = `
         <p>🕹 게임 시작! 목표 점수를 획득하세요!</p>
@@ -22,7 +22,7 @@ function startGame() {
     `;
 }
 
-// 게임 플레이 기능 추가
+// ✅ 게임 플레이 기능 추가
 function playGame() {
     let attackPower = Math.floor(Math.random() * 20) + 1;
     score += attackPower;
@@ -38,7 +38,7 @@ function playGame() {
     }
 }
 
-// 카드 뽑기 기능
+// ✅ 카드 뽑기 기능
 function drawCard() {
     if (nekoCoins < 10) {
         alert("❌ NEKO 코인이 부족합니다! 광고를 보거나 게임을 진행하세요.");
@@ -76,14 +76,14 @@ function drawCard() {
     }
 }
 
-// 광고 보기 기능
+// ✅ 광고 보기 기능
 function watchAd() {
     alert("📺 광고를 봤습니다! +20 NEKO 코인 지급!");
     nekoCoins += 20;
     document.getElementById("coinValue").innerText = nekoCoins;
 }
 
-// 난이도 설정 (게임 시작 연결)
+// ✅ 난이도 설정 (게임 시작 연결)
 function setDifficulty(level) {
     alert(`${level} 난이도로 설정됨`);
     startGame();  // 난이도를 설정하면 게임이 시작됨.
