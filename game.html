@@ -1,147 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neon Chase</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
-            background-size: cover;
-            overflow: hidden;
-            position: relative;
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
-            color: cyan;
-        }
-        #neon-cat {
-            position: absolute;
-            width: 150px;
-            cursor: pointer;
-            transition: all 0.3s;
-            left: 0;
-            top: 0;
-        }
-        #score {
-            font-size: 20px;
-            margin: 10px;
-            text-shadow: 2px 2px 4px #000;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-        #gacha-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 30px;
-            font-size: 18px;
-            background: #ff00ff;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            text-shadow: 0 0 10px white;
-            box-shadow: 0 0 10px #ff00ff;
-            z-index: 1000;
-        }
-        #gacha-btn:hover {
-            background: #ff33ff;
-        }
-        .difficulty-container {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px; /* 버튼 간격 */
-        }
-        .difficulty-btn {
-            padding: 6px 12px;
-            background: rgba(0, 255, 255, 0.7);
-            border: 2px solid #00ffcc;
-            border-radius: 6px;
-            color: white;
-            cursor: pointer;
-            text-shadow: 0 0 5px cyan;
-            box-shadow: 0 0 10px #00ffcc;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .difficulty-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #ff00ff;
-            background: #00ffff;
-        }
-        audio {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="game-background">
     <p id="score">점수: 0</p>
-    <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()">
-    
-    <audio id="bgm" loop>
-        <source src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/audio/neon_singularity_bgm.mp3" type="audio/mp3">
+    <p id="neko-coins">🪙 NEKO 코인: 100</p>
+    <img id="neon-cat" src="neoncat.GIF" onclick="clickCat()">
+
+    <audio autoplay loop>
+        <source src="audio/neon_singularity_bgm.mp3" type="audio/mp3">
     </audio>
 
-    <button id="gacha-btn" onclick="goToGacha()"> 카드 뽑기 </button>
-    <div class="difficulty-container">
-        <button class="difficulty-btn" onclick="setDifficulty(3000)">쉬움</button>
-        <button class="difficulty-btn" onclick="setDifficulty(2000)">보통</button>
-        <button class="difficulty-btn" onclick="setDifficulty(1000)">어려움</button>
-        <button class="difficulty-btn" onclick="setDifficulty(500)">매우 어려움</button>
-    </div>
+    <button id="gacha-btn" onclick="goToGacha()">🎴 가챠 뽑기</button>
 
     <script>
         let score = 0;
-        let intervalId = null;
-        let currentSpeed = 2000;
-        const cat = document.getElementById("neon-cat");
+        let nekoCoins = 100;
         const scoreDisplay = document.getElementById("score");
-        const bgm = document.getElementById("bgm");
-
-        function moveCat() {
-            const maxX = window.innerWidth - 150;
-            const maxY = window.innerHeight - 150;
-            const newX = Math.floor(Math.random() * maxX);
-            const newY = Math.floor(Math.random() * maxY);
-            cat.style.left = newX + "px";
-            cat.style.top = newY + "px";
-
-            const rotate = Math.random() * 360;
-            const scale = 0.7 + Math.random() * 0.6;
-            cat.style.transform = `rotate(${rotate}deg) scale(${scale})`;
-        }
+        const nekoDisplay = document.getElementById("neko-coins");
 
         function clickCat() {
-            const bonus = currentSpeed === 1000 ? 2 : currentSpeed === 500 ? 3 : 1;
-            score += bonus;
-            scoreDisplay.innerHTML = "점수: " + score;
-            moveCat();
-            if (score === 1) {
-                bgm.play().catch(err => console.log("Autoplay blocked:", err));
-            }
+            score++;
+            nekoCoins += 2; // 고양이 클릭 시 2 코인 지급
+            scoreDisplay.innerHTML = `점수: ${score}`;
+            nekoDisplay.innerHTML = `🪙 NEKO 코인: ${nekoCoins}`;
         }
 
         function goToGacha() {
+            window.localStorage.setItem("nekoCoins", nekoCoins); // 가챠 페이지로 코인 값 저장
             window.location.href = "gacha.html";
         }
-
-        function setDifficulty(speed) {
-            if (intervalId) clearInterval(intervalId);
-            intervalId = setInterval(moveCat, speed);
-            currentSpeed = speed;
-            const transitionSpeed = speed / 2000;
-            cat.style.transition = `all ${transitionSpeed}s`;
-        }
-
-        window.addEventListener("load", () => {
-            moveCat();
-            setDifficulty(2000); // 기본: 보통
-        });
     </script>
 </body>
 </html>
