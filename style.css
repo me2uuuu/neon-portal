@@ -1,6 +1,5 @@
 body {
-    background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gifFile%206.GIF') no-repeat center center fixed;
-    background-size: cover;
+    background: black;
     color: cyan;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
@@ -19,11 +18,9 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
-    margin: 10px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    text-shadow: 0 0 5px magenta;
 }
 
 button:hover {
@@ -31,9 +28,8 @@ button:hover {
 }
 
 .card-container {
-    margin-top: 20px;
-    padding: 10px;
-    border: 2px solid cyan;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
-
