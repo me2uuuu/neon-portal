@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL</title>
+    <title>Neon Chase</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>NEON 차원으로 이동</h1>
-        <button class="portal-btn" onclick="location.href='game.html'">🎮 게임 시작</button>
-    </div>
+    <p id="score">점수: <span id="scoreValue">0</span></p>
+    <p id="nekoCoins">🪙 NEKO 코인: <span id="coinValue">100</span></p>
+
+    <img id="neon-cat" src="images/neon-cat.gif" onclick="clickCat()">
+
+    <button id="gacha-btn" onclick="goToGacha()">🎴 가챠 뽑기 (-10 NEKO)</button>
+
+    <script src="script.js"></script>
 </body>
 </html>
