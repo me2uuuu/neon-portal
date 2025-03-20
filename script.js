@@ -18,7 +18,16 @@ const cardPool = [
 // ✅ 가챠 기능
 function drawGacha() {
     if (nekoCoins < 10) {
-        alert("❌ NEKO 코인이 부족합니다! 광고를 보거나 게임을 진행하세요.");
+        // 알림 UI 생성
+        const alertBox = document.createElement("div");
+        alertBox.classList.add("alert");
+        alertBox.innerText = "❌ NEKO 코인이 부족합니다! 광고를 보거나 게임을 진행하세요.";
+        document.body.appendChild(alertBox);
+        
+        // 3초 후 알림 박스 제거
+        setTimeout(() => {
+            alertBox.remove();
+        }, 3000);
         return;
     }
 
