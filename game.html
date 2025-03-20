@@ -3,40 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON PORTAL GAME</title>
+    <title>NEON PORTAL</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>네온 포탈 게임</h1>
-        <p id="score">점수: <span id="scoreValue">0</span></p>
-        <p id="nekoCoins">🪙 NEKO 코인: <span id="coinValue">100</span></p>
-
-        <!-- 난이도 버튼 -->
-        <div class="difficulty-buttons">
-            <button onclick="setDifficulty('easy')">쉬움</button>
-            <button onclick="setDifficulty('normal')">보통</button>
-            <button onclick="setDifficulty('hard')">어려움</button>
-            <button onclick="setDifficulty('very-hard')">매우 어려움</button>
-        </div>
-
-        <!-- 게임 실행 영역 -->
-        <div id="gameArea">
-            <p>🕹 게임이 시작되면 여기에 표시됩니다.</p>
-        </div>
-
-        <!-- 카드 뽑기 버튼 -->
-        <button id="gachaButton" onclick="drawCard()">🎴 가챠 뽑기 (-10 NEKO)</button>
-
-        <!-- 광고 보기 버튼 -->
-        <button id="watchAdButton" onclick="watchAd()">📺 광고 보기 (+20 NEKO)</button>
-
-        <!-- 카드 결과 표시 -->
-        <div class="card-container" id="cardDisplay">
-            <p>✨ 여기에 뽑은 카드가 표시됩니다 ✨</p>
-        </div>
+        <h1>NEON 차원으로 이동</h1>
+        <button class="portal-btn" onclick="location.href='game.html'">🎮 게임 시작</button>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
