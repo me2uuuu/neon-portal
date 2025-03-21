@@ -53,10 +53,9 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    margin-top: 20px;
-    min-height: 250px; /* 💡 추가: 카드 영역 최소 높이 고정 */
+    min-height: 200px; /* 💡 카드 영역 최소 높이 설정 */
+    flex-wrap: wrap; /* 💡 카드가 밀릴 때 자동 줄바꿈 */
 }
-
 /* 카드 스타일 */
 .card {
   width: 110px;
