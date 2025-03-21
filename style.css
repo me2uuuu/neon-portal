@@ -5,43 +5,71 @@ body {
   padding: 0;
   background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gif_file_6.GIF') no-repeat center center fixed;
   background-size: cover;
+  overflow-x: hidden;
   font-family: 'Orbitron', sans-serif;
   color: cyan;
   text-align: center;
 }
 
+/* 공통 컨테이너 */
 .container {
-  max-width: 800px;
-  width: 90%;
-  margin: 50px auto;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px cyan;
+  margin: 60px auto;
+  padding: 30px;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 0 20px cyan, 0 0 40px magenta;
 }
 
+/* 타이틀 */
+h1 {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px cyan, 0 0 20px magenta;
+}
+
+/* 버튼 공통 */
+button {
+  background: linear-gradient(45deg, #00ffcc, #ff00ff);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+  text-shadow: 0 0 5px white;
+  box-shadow: 0 0 10px #00ffcc, 0 0 20px #ff00ff;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* 카드 컨테이너 (가챠 전용) */
 .card-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
   margin-top: 20px;
 }
 
+/* 카드 스타일 */
 .card {
-  width: 100px;
-  height: 150px;
+  width: 110px;
+  height: 160px;
   border: 2px solid cyan;
   border-radius: 10px;
   background: rgba(0, 255, 204, 0.2);
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+  box-shadow: 0 0 10px cyan;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #00ffcc;
-  cursor: pointer;
+  flex-direction: column;
   transition: transform 0.3s;
 }
 
@@ -52,26 +80,44 @@ body {
   border-radius: 8px;
 }
 
-button {
-  background: magenta;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 15px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  text-shadow: 0 0 5px magenta;
-  box-shadow: 0 0 10px magenta;
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff00ff;
 }
 
-button:hover {
-  background: #ff33ff;
-}
-
+/* 사운드 버튼 */
 #sound-btn {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
-  z-index: 999;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #00ffcc;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+/* 점수 및 코인 표시 */
+#score, #coin {
+  font-size: 1.3em;
+  margin-top: 10px;
+  color: yellow;
+  text-shadow: 0 0 10px yellow, 0 0 20px magenta;
+}
+
+/* 네온캣 위치 초기화용 */
+#neon-cat {
+  position: absolute;
+  width: 150px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  left: 0;
+  top: 0;
+}
+
+/* 숨겨진 오디오 */
+audio {
+  display: none;
 }
