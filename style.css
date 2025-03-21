@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
- body {
+body {
   margin: 0;
   padding: 0;
   background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/gif_file_6.GIF') no-repeat center center fixed;
@@ -11,40 +11,27 @@
 }
 
 .container {
-  margin-top: 50px;
+  max-width: 800px;
+  width: 90%;
+  margin: 50px auto;
   background: rgba(0, 0, 0, 0.7);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 15px cyan;
 }
 
-button {
-  background: magenta;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  text-shadow: 0 0 5px magenta;
-}
-
-button:hover {
-  background: #ff33ff;
-}
-
 .card-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
   margin-top: 20px;
 }
 
 .card {
-  width: 120px;
-  height: 180px;
+  width: 100px;
+  height: 150px;
   border: 2px solid cyan;
   border-radius: 10px;
   background: rgba(0, 255, 204, 0.2);
@@ -52,7 +39,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #00ffcc;
   cursor: pointer;
   transition: transform 0.3s;
@@ -63,4 +50,28 @@ button:hover {
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+}
+
+button {
+  background: magenta;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-shadow: 0 0 5px magenta;
+  box-shadow: 0 0 10px magenta;
+}
+
+button:hover {
+  background: #ff33ff;
+}
+
+#sound-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
 }
