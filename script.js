@@ -1,39 +1,52 @@
-let score = 0;
-let nekoCoins = 100;
-const cat = document.getElementById("neon-cat");
-const scoreDisplay = document.getElementById("scoreValue");
-const coinDisplay = document.getElementById("coinValue");
-
-// 네온캣 이동 함수
-function moveCat() {
-    const maxX = window.innerWidth - 150;
-    const maxY = window.innerHeight - 150;
-    const newX = Math.floor(Math.random() * maxX);
-    const newY = Math.floor(Math.random() * maxY);
-    cat.style.left = `${newX}px`;
-    cat.style.top = `${newY}px`;
+/* style.css */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('img/bg.gif') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Orbitron', sans-serif;
+  color: cyan;
+  text-align: center;
 }
 
-// 클릭 시 점수 증가
-function clickCat() {
-    score += 5;
-    nekoCoins += 2;
-    scoreDisplay.innerText = score;
-    coinDisplay.innerText = nekoCoins;
-    moveCat();
+.container {
+  margin-top: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px cyan;
 }
 
-// 가챠 이동
-function goToGacha() {
-    if (nekoCoins >= 10) {
-        nekoCoins -= 10;
-        coinDisplay.innerText = nekoCoins;
-        window.location.href = "gacha.html";
-    } else {
-        alert("NEKO 코인이 부족합니다!");
-    }
+button {
+  background: magenta;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-shadow: 0 0 5px magenta;
 }
 
-// 초기 실행
-moveCat();
-setInterval(moveCat, 2000);
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.card {
+  width: 120px;
+  height: 180px;
+  border: 2px solid cyan;
+  border-radius: 10px;
+  background: rgba(0, 255, 204, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: #00ffcc;
+  cursor: pointer;
+}
