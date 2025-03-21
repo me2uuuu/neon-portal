@@ -57,7 +57,7 @@ button:hover {
     min-height: 220px; /* 💡 카드 컨테이너 최소 높이 고정 */
     position: relative; /* 💡 카드 위치가 변하지 않도록 */
     top: 0; /* 💡 위로 밀리는 것 방지 */
-}
+  position: absolute; bottom: 0;}
 /* 카드 스타일 */
 .card {
     width: 120px;
@@ -75,7 +75,7 @@ button:hover {
     transition: transform 0.3s;
     animation: float 3s ease-in-out infinite;
     position: relative; /* 💡 카드 위치를 고정 */
-}
+  position: absolute; bottom: 0;}
 
 .card img {
   width: 100%;
