@@ -1,28 +1,30 @@
+<!-- gacha.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON GACHA</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEON GACHA</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <audio id="bgm" loop>
-        <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3">
-    </audio>
-    <button id="sound-btn">🔊 사운드 ON</button>
-    
+  <audio id="bgm" loop>
+    <source src="audio/neon_gacha_bgm.mp3" type="audio/mp3" />
+  </audio>
+  <button id="sound-btn">🔊 사운드 ON</button>
+
+  <div class="container">
     <h1>네온 포탈 가챠</h1>
-    
     <div class="card-container">
-        <div class="card" id="card1">✨ Gacha Card ✨</div>
-        <div class="card" id="card2">✨ Gacha Card ✨</div>
-        <div class="card" id="card3">✨ Gacha Card ✨</div>
+      <div class="card" id="card1">✨ Gacha Card ✨</div>
+      <div class="card" id="card2">✨ Gacha Card ✨</div>
+      <div class="card" id="card3">✨ Gacha Card ✨</div>
     </div>
-
-    <button id="gachaButton" onclick="drawGacha()">🎴 가챠 뽑기 (-10 NEKO)</button>
     <p id="score">점수: <span id="scoreValue">0</span></p>
+    <p>🪙 NEKO 코인: <span id="coinValue">100</span></p>
+    <button id="gachaButton" onclick="drawGacha()">🎴 가챠 뽑기 (-10 NEKO)</button>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="gacha.js"></script>
 </body>
 </html>
