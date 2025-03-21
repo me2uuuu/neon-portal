@@ -53,24 +53,28 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    min-height: 200px; /* 💡 카드 영역 최소 높이 설정 */
-    flex-wrap: wrap; /* 💡 카드가 밀릴 때 자동 줄바꿈 */
+    flex-wrap: nowrap; /* 💡 줄바꿈 방지 */
+    min-height: 220px; /* 💡 카드 컨테이너 최소 높이 고정 */
+    position: relative; /* 💡 카드 위치가 변하지 않도록 */
+    top: 0; /* 💡 위로 밀리는 것 방지 */
 }
 /* 카드 스타일 */
 .card {
-  width: 110px;
-  height: 160px;
-  border: 2px solid cyan;
-  border-radius: 10px;
-  background: rgba(0, 255, 204, 0.2);
-  box-shadow: 0 0 10px cyan;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9em;
-  color: #00ffcc;
-  flex-direction: column;
-  transition: transform 0.3s;
+    width: 120px;
+    height: 180px;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #00ffcc;
+    cursor: pointer;
+    transition: transform 0.3s;
+    animation: float 3s ease-in-out infinite;
+    position: relative; /* 💡 카드 위치를 고정 */
 }
 
 .card img {
