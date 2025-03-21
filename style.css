@@ -60,19 +60,12 @@ button:hover {
 .card {
     width: 120px;
     height: 180px;
-    border: 2px solid cyan;
-    border-radius: 10px;
-    background: rgba(0, 255, 204, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2em;
-    color: #00ffcc;
-    cursor: pointer;
-    transition: transform 0.3s;
-    animation: float 3s ease-in-out infinite;
-    position: relative; /* 겹치는 문제 방지 */
+    font-size: 0; /* 폰트 크기를 0으로 설정해서 안 보이게 만듦 */
+    color: transparent; /* 폰트 투명화 */
+    white-space: nowrap; /* 폰트가 줄 바꿈되지 않도록 설정 */
 }
 
 .card img {
