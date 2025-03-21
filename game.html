@@ -1,70 +1,23 @@
+<!-- game.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NEON CAT GAME</title>
+  <title>NEON CHASE</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      background: url('https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF') no-repeat center center fixed;
-      background-size: cover;
-      overflow: hidden;
-      position: relative;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      color: cyan;
-    }
-    #neon-cat {
-      position: absolute;
-      width: 150px;
-      cursor: pointer;
-      transition: all 0.3s;
-      left: 0;
-      top: 0;
-    }
-    #score, #coin {
-      font-size: 20px;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      text-shadow: 2px 2px 4px #000;
-    }
-    #coin {
-      top: 40px;
-    }
-    #gacha-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 15px 30px;
-      font-size: 18px;
-      background: #ff00ff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      text-shadow: 0 0 10px white;
-      box-shadow: 0 0 10px #ff00ff;
-      z-index: 1000;
-    }
-    #gacha-btn:hover {
-      background: #ff33ff;
-    }
-  </style>
 </head>
 <body>
   <p id="score">점수: <span id="scoreValue">0</span></p>
   <p id="coin">NEKO 코인: <span id="coinValue">100</span></p>
-  <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()" />
+  <img id="neon-cat" src="https://raw.githubusercontent.com/me2uuuu/neon-portal/main/neoncat.GIF" onclick="clickCat()"/>
+
   <audio id="bgm" loop>
     <source src="audio/neon_singularity_bgm.mp3" type="audio/mp3" />
   </audio>
-  <button id="gacha-btn" onclick="goToGacha()">🎴 카드 뽑기</button>
 
-  <!-- ✅ JS 연결 -->
+  <button id="gacha-btn" onclick="goToGacha()">카드 뽑기</button>
+
   <script src="game.js"></script>
 </body>
 </html>
