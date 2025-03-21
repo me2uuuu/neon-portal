@@ -48,26 +48,22 @@ button:hover {
 }
 
 /* 카드 컨테이너 (가챠 전용) */
-.card-container {
-    display: flex;
-    justify-content: center; /* 가운데 정렬 */
-    align-items: center; /* 수직 정렬 */
-    gap: 10px; /* 카드 간격 조절 */
-    flex-wrap: nowrap; /* 카드 줄바꿈 방지 */
-    min-height: 200px; /* 카드 영역 고정 */
-}
-
 .card {
     width: 120px;
     height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0; /* 폰트 크기를 0으로 설정해서 안 보이게 만듦 */
-    color: transparent; /* 폰트 투명화 */
-    white-space: nowrap; /* 폰트가 줄 바꿈되지 않도록 설정 */
+    min-width: 120px;
+    min-height: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9em;
 }
 
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+}
 .card img {
     width: 100%;
     height: 100%;
