@@ -9,10 +9,10 @@ const coinDisplay = document.getElementById("coinValue");
 const bgm = document.getElementById("bgm");
 
 const catQuotes = [
-  "네온 속도를 느껴봐!",
-  "더 빠르게! 더 빠르게!",
+  "네온 속도를 느껴봐!", 
+  "더 빠르게! 더 빠르게!", 
   "잡아봐라! 😆",
-  "난 네온 세계의 최강자다!",
+  "난 네온 세계의 최강자다!", 
   "점수 더 쌓아봐! 😼"
 ];
 
@@ -35,8 +35,8 @@ function clickCat() {
   scoreDisplay.innerText = score;
   coinDisplay.innerText = nekoCoins;
 
-  const quote = catQuotes[Math.floor(Math.random() * catQuotes.length)];
-  alert(quote);
+  const randomQuote = catQuotes[Math.floor(Math.random() * catQuotes.length)];
+  alert(randomQuote);
 
   if (moveSpeed > minSpeed) moveSpeed -= 200;
 
